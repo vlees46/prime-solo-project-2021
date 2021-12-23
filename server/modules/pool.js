@@ -29,8 +29,10 @@ if (process.env.DATABASE_URL) {
 } else {
   config = {
     host: 'localhost', // Server hosting the postgres database
+    user: process.env.PG_USER || 'postgres', //env var: PGUSER
+    password: process.env.DATABASE_SECRET || ' ', //env var: PGPASSWORD
     port: 5432, // env var: PGPORT
-    database: 'prime_app', // CHANGE THIS LINE! env var: PGDATABASE, this is likely the one thing you need to change to get up and running
+    database: 'macromeal', // CHANGE THIS LINE! env var: PGDATABASE, this is likely the one thing you need to change to get up and running
     max: 10, // max number of clients in the pool
     idleTimeoutMillis: 30000, // how long a client is allowed to remain idle before being closed
   };
