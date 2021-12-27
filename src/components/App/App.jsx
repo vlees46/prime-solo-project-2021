@@ -19,6 +19,7 @@ import AddMeal from '../AddMeal/addmeal';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import ReviewMeal from '../ReviewMeal/reviewmeal.js'
 
 import './App.css';
 
@@ -68,6 +69,14 @@ function App() {
           >
             <AddMeal />
           </ProtectedRoute>
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/reviewmeal"
+          >
+            <ReviewMeal />
+          </ProtectedRoute>
+
 
           <Route
             exact
