@@ -27,7 +27,7 @@ router.get('/', (req, res) => {
   INSERT INTO "meals" ("mealtime",  "description", "calories", "protein", "carbs","fats")
   VALUES ($1, $2, $3, $4, $5, $6)
   RETURNING "id";`
-// FIRST QUERY MAKES MOVIE
+// FIRST QUERY MAKES A MEAL
   pool.query(insertMealsQuery, [req.body.mealtime, req.body.description,  req.body.calories,  req.body.protein,  req.body.carbs,  req.body.fats])
   .then(result => {
     console.log('New Meal Id:', result.rows[0].id); //ID IS HERE!
@@ -38,7 +38,7 @@ router.get('/', (req, res) => {
       INSERT INTO "user_meals" ("meal_id", "goal")
       VALUES  ($1, $2);
       `
-      // SECOND QUERY ADDS GENRE FOR THAT NEW MOVIE
+      // SECOND QUERY ADDS GOAL FOR THAT NEW MEAL
       pool.query(insertUserMealsQuery, [createdMealId, req.body.goal]).then(result => {
         //Now that both are done, send back success!
         res.sendStatus(201);
@@ -54,5 +54,39 @@ router.get('/', (req, res) => {
   })
 })
 
+router.delete('/:id', (req, res) => {
+  //req.params as "id" value of the item
+  // console.log(req.params.id);
+  // //req.user.id as value of "user_id"
+  //console.log('this is the userID', req.user.id)
+  console.log('router delete function', req.params.id);
+
+  //check and see if the "user_id" value of the row "id" matches req.user.id
+  //query SELECT * FROM "item" WHERE "id" = req.params
+
+  const query1 = `DELETE FROM "user_meals" WHERE "user_meals"."id"=$1`;
+  const query2 = `DELETE FROM "meals" WHERE "meals"."id"=$1`;
+
+  const sqlValues = [
+    req.params.id    
+  ]
+               
+  console.log('this is delete query', sqlValues);
+        
+    pool.query(query1, sqlValues)
+        .then((dbres) => res.sendStatus(201))
+        .catch((error) => {
+          console.log('ahhhh you screwed up', error);
+          res.sendStatus(500)
+        })
+
+    pool.query(query2, sqlValues)
+        .then((dbres) => res.sendStatus(201))
+        .catch((error) => {
+          console.log('ahhhh you screwed up', error);
+          res.sendStatus(500)
+        })
+      
+    });    
 
 module.exports = router;

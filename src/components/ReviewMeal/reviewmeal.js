@@ -22,7 +22,13 @@ useEffect(() => {
     dispatch({ type: 'GET_REVIEW' });
   }, []);
   
-  
+const removeMeals = (id) => {
+  dispatch ({
+    type: 'DELETE_MEAL',
+    payload: id
+  })
+}
+
   console.log('reviewmeal REDUCER', meals);
 
   return (
@@ -30,7 +36,9 @@ useEffect(() => {
     
     <ul>
         {meals.map((meal) => {
-          return <li key={meal.id}>{meal.mealtime}<br></br> Description: {meal.description} </li>
+          return <li key={meal.id}>{meal.mealtime}<br></br> Description: {meal.description} 
+          <button onClick={e => removeMeals(meal.id)}> Delete </button>
+          </li>
           
         })}
       </ul>
