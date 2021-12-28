@@ -12,7 +12,7 @@ function* createMeal(action) {
     url: '/api/addmeal',
     data: action.payload
   })
- // yield put({ type: 'FETCH_MOVIES' })
+  yield put({ type: 'GET_REVIEW' })
 }
 
 /* function* deleteMeal (action){

@@ -7,10 +7,10 @@ const router = express.Router();
  */
 router.get('/', (req, res) => {
   // GET route code here
-  pool.query(`
-  SELECT * FROM "meals"
-    ORDER BY "mealtime" ASC;
-  `).then((dbres) => res.send(dbres.rows))
+  const query = `SELECT * FROM "meals" ORDER BY "mealtime" ASC`;
+
+ pool.query(query)
+  .then((dbres) => res.send(dbres.rows))
     .catch((dberror) => {
       console.log('Opps you messed up DB error', dberror);
       res.sendStatus(500)

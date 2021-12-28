@@ -15,27 +15,27 @@ import { useDispatch, useSelector } from 'react-redux';
 function reviewmeal() {
   const dispatch = useDispatch();
   const history = useHistory();
-  const meals = useSelector((store) => store.meal);
   
-
-console.log('reviewmeal reducert', meals);
-
+  
 useEffect(() => {
     dispatch({ type: 'GET_REVIEW' });
   }, []);
   
 
+  const meals = useSelector((store) => store.meal);
 
+  console.log('reviewmeal REDUCER', meals);
 
   return (
-    <main>
-      <h1>Review Meals</h1>
-      <ul>
-         {meals.map((meals) => {
-              return <li>{mealtime}</li>
-          })}
+    <div>
+    
+    <ul>
+        {meals.map((meal) => {
+          return <li key={meal.id}>{meal.mealtime}<br></br> Description: {meal.description} </li>
+          
+        })}
       </ul>
-    </main>
+  </div>
   );
   
 }
