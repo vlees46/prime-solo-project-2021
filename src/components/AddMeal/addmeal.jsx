@@ -25,7 +25,7 @@ function addmeal() {
   console.log(mealtime, description, calories, protein, carbs, fats, goal);
 
 const addMeals = (e) => {
- // e.preventDefault();
+ e.preventDefault();
   dispatch({
     type: 'CREATE_MEAL',
     payload: {

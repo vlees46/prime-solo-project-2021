@@ -15,15 +15,14 @@ import { useDispatch, useSelector } from 'react-redux';
 function reviewmeal() {
   const dispatch = useDispatch();
   const history = useHistory();
-  
+ 
+  const meals = useSelector((store) => store.meal);
   
 useEffect(() => {
     dispatch({ type: 'GET_REVIEW' });
   }, []);
   
-
-  const meals = useSelector((store) => store.meal);
-
+  
   console.log('reviewmeal REDUCER', meals);
 
   return (
