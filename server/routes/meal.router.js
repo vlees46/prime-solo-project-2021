@@ -78,19 +78,13 @@ router.delete('/:id', (req, res) => {
 
         
     pool.query(query1, sqlValues)
-        .then((dbres) => res.sendStatus(201))
-        .catch((error) => {
-          console.log('ahhhh you screwed up', error);
-          res.sendStatus(500)
+        .then((dbres) => {
+          pool.query(query2, sqlValues)
         })
-
-    pool.query(query2, sqlValues)
-        .then((dbres) => res.sendStatus(203))
+        .then((dbres) => res.sendStatus(201))      
         .catch((error) => {
           console.log('ahhhh you screwed up', error);
           res.sendStatus(500)
-        }) 
-      
-    });    
+        })    })
 
 module.exports = router;
