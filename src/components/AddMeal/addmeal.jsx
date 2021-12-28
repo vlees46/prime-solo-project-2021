@@ -25,7 +25,7 @@ function addmeal() {
   console.log(mealtime, description, calories, protein, carbs, fats, goal);
 
 const addMeals = (e) => {
- e.preventDefault();
+//e.preventDefault();
   dispatch({
     type: 'CREATE_MEAL',
     payload: {
@@ -39,10 +39,21 @@ const addMeals = (e) => {
     }
 
   })
-  history.push('/reviewmeal');
+
+  setMealTime('');
+  setDescription('');
+  setcalories('');
+  setCarbs('');
+  setProtein('');
+  setFats('');
+  setGoal('');
+  
 }
 
+const nextpage = (e) =>  {
+  history.push('/reviewmeal');
 
+}
 
   return (
     <div className="container">
@@ -117,6 +128,7 @@ const addMeals = (e) => {
           onClick={(e) => setGoal(e.target.value)}/><br></br>
 
       <button onClick={(e) => { addMeals(e) }}>Add</button> 
+      <button onClick={(e) => { nextpage(e) }}>Review Meal</button>
       </form>
     </div>
   );

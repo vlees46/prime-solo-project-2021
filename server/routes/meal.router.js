@@ -10,8 +10,8 @@ router.get('/', (req, res) => {
   const query = `SELECT * FROM "meals" ORDER BY "mealtime" ASC`;
 
  pool.query(query)
-  .then((dbres) => res.send(dbres.rows))
-    .catch((dberror) => {
+  .then((dbres) => res.send(dbres.rows))     
+  .catch((dberror) => {
       console.log('Opps you messed up DB error', dberror);
       res.sendStatus(500)
     })  
@@ -65,13 +65,17 @@ router.delete('/:id', (req, res) => {
   //query SELECT * FROM "item" WHERE "id" = req.params
 
   const query1 = `DELETE FROM "user_meals" WHERE "user_meals"."id"=$1`;
-  const query2 = `DELETE FROM "meals" WHERE "meals"."id"=$1`;
+  const query2 = `DELETE FROM "meals" WHERE "meals"."id"=$1`; 
 
+  /* const testquery = `DELETE FROM "user_meals USING meals WHERE "user_meals"."id"=$1 = "meals"."id"=$1 `
+ */
   const sqlValues = [
     req.params.id    
   ]
                
   console.log('this is delete query', sqlValues);
+
+
         
     pool.query(query1, sqlValues)
         .then((dbres) => res.sendStatus(201))
@@ -81,11 +85,11 @@ router.delete('/:id', (req, res) => {
         })
 
     pool.query(query2, sqlValues)
-        .then((dbres) => res.sendStatus(201))
+        .then((dbres) => res.sendStatus(203))
         .catch((error) => {
           console.log('ahhhh you screwed up', error);
           res.sendStatus(500)
-        })
+        }) 
       
     });    
 
