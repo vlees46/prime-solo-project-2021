@@ -5,14 +5,18 @@ import LogOutButton from '../LogOutButton/LogOutButton';
 import UserPageStyle from './UserPageStyle.css';
 
 function UserPage() {
+
+
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
 
 //*Create state for calculator variables  -- DONE
 //*Create form and check to see if state is being entered properly as an object - DONE
-//*Perform calculations,
+//*Perform calculations, almost done, but need to do some corrections
 //*SAGAS - Reducers
 //*Update Database
+
+const dispatch = useDispatch();
 
 const [gender, setGender] = useState('');
 const [age, setAge] = useState('');
@@ -24,6 +28,9 @@ const [calories, setCalories] = useState('');  // calculated
 const [fats, setFats] = useState('');          // calculated
 const [carbs, setCarbs] = useState('');        // calculated
 const [proteins, setProteins] = useState('');  // calculated
+
+console.log('this is the state',calories, 'protein', proteins,'carbs', carbs, 'fats', fats, 'goal', goal, 'weight', weight,'height', height,'gender', gender, 'age', age, 'activity', activity);
+
 
 function macroCalculate(weight, goal) {
 var totalCalories;
@@ -41,6 +48,7 @@ const totalAge = age * 5;
    if ( goal === "Loose Weight" ) {
     
     totalCalories = (totalWeight + totalHeight) - totalAge + 5;
+    setCalories(totalCalories);  
     proteinGrams = Math.round((totalCalories / 2 / 4) * 10) / 10;
     carbsGrams = Math.round((totalCalories / 4 / 4) * 10) / 10;
     fatGrams = Math.round((totalCalories / 4 / 9) * 10) / 10;
@@ -49,6 +57,7 @@ const totalAge = age * 5;
 
   if ( goal === "Maintain Weight" ) {
     totalCalories = (totalWeight + totalHeight) - totalAge + 5;
+    setCalories(totalCalories);  
     proteinGrams = Math.round(((totalCalories * .4) / 4) * 10) / 10;
     carbsGrams = Math.round(((totalCalories * .3) / 4) * 10) / 10;
     fatGrams = Math.round(((totalCalories * .3) / 9) * 10) / 10;
@@ -57,6 +66,7 @@ const totalAge = age * 5;
 
   if ( goal === "Gain Weight" ) {
     totalCalories = (totalWeight + totalHeight) - totalAge + 5;
+    setCalories(totalCalories);  
     proteinGrams = Math.round(((totalCalories * .4) / 4) * 10) / 10;
     carbsGrams = Math.round(((totalCalories * .3) / 4) * 10) / 10;
     fatGrams = Math.round(((totalCalories * .3) / 9) * 10) / 10;
@@ -68,6 +78,7 @@ const totalAge = age * 5;
     if ( goal === "Loose Weight" ) {
     
       totalCalories = (totalWeight + totalHeight) - totalAge - 161;
+      setCalories(totalCalories);  
       proteinGrams = Math.round((totalCalories / 2 / 4) * 10) / 10;
       carbsGrams = Math.round((totalCalories / 4 / 4) * 10) / 10;
       fatGrams = Math.round((totalCalories / 4 / 9) * 10) / 10;
@@ -76,6 +87,7 @@ const totalAge = age * 5;
   
     if ( goal === "Maintain Weight" ) {
       totalCalories = (totalWeight + totalHeight) - totalAge - 161;
+      setCalories(totalCalories);  
       proteinGrams = Math.round(((totalCalories * .4) / 4) * 10) / 10;
       carbsGrams = Math.round(((totalCalories * .3) / 4) * 10) / 10;
       fatGrams = Math.round(((totalCalories * .3) / 9) * 10) / 10;
@@ -84,6 +96,7 @@ const totalAge = age * 5;
   
     if ( goal === "Gain Weight" ) {
       totalCalories = (totalWeight + totalHeight) - totalAge - 161;
+      setCalories(totalCalories);  
       proteinGrams = Math.round(((totalCalories * .4) / 4) * 10) / 10;
       carbsGrams = Math.round(((totalCalories * .3) / 4) * 10) / 10;
       fatGrams = Math.round(((totalCalories * .3) / 9) * 10) / 10;
@@ -101,10 +114,25 @@ const totalAge = age * 5;
  }
   
 
-/* const updateUser = (e) => {
-//*dispatch UPDATE_USER
+const updateUser = (e) => {
+  dispatch({
+    type: 'UPDATE_USER',
+    payload: {
+      gender: gender,
+      age: age,
+      weight: weight,
+      height: height,
+      activity: activity,
+      goal: goal,    
+      calories: calories,
+      fats: fats,
+      protein: proteins,
+      carbs: carbs          
+    }
 
-} */
+  })
+
+} 
 
 function handleSubmit(e){
  e.preventDefault();
@@ -113,14 +141,15 @@ function handleSubmit(e){
   setCarbs(carbsGrams);
   setFats(fatGrams);
   setCalories(totalCalories);  
-
-  console.log('calories',totalCalories, 'protein', proteinGrams,'carbs', carbsGrams, 'fats', fatGrams, 'goal', goal, 'weight', weight,'height', height,'gender', gender, 'age', age, 'activity', activity);
+  
+ updateUser(e);
 }
 
   return (    
     
 
       <div>
+        <h2>Welcome, {user.username}!</h2>
         <form className="Form">
          <input
           type="button"
