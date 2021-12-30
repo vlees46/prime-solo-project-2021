@@ -8,9 +8,10 @@ function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
 
-//*Create state for calculator variables
-//*Create form and check to see if state is being entered properly as an object
-//*Perform calculations, saga store
+//*Create state for calculator variables  -- DONE
+//*Create form and check to see if state is being entered properly as an object - DONE
+//*Perform calculations,
+//*SAGAS - Reducers
 //*Update Database
 
 const [gender, setGender] = useState('');
@@ -30,35 +31,75 @@ var proteinGrams;
 var carbsGrams;
 var fatGrams;
 
-  if ( goal === "Loose Weight" ) {
-    console.log('in GOAL', goal);
-    totalCalories = weight * 11;
+const heightCm = height * 2.54;
+const weightKg = weight * .45;
+const totalWeight = weightKg * 10;
+const totalHeight = heightCm * 6.25;
+const totalAge = age * 5;
+
+  if (gender === "Male") {
+   if ( goal === "Loose Weight" ) {
+    
+    totalCalories = (totalWeight + totalHeight) - totalAge + 5;
     proteinGrams = Math.round((totalCalories / 2 / 4) * 10) / 10;
     carbsGrams = Math.round((totalCalories / 4 / 4) * 10) / 10;
     fatGrams = Math.round((totalCalories / 4 / 9) * 10) / 10;
+    console.log('in MALE GOAL', goal, heightCm, weightKg, totalCalories);
   }
 
   if ( goal === "Maintain Weight" ) {
-    totalCalories = weight * 11;
+    totalCalories = (totalWeight + totalHeight) - totalAge + 5;
     proteinGrams = Math.round(((totalCalories * .4) / 4) * 10) / 10;
     carbsGrams = Math.round(((totalCalories * .3) / 4) * 10) / 10;
     fatGrams = Math.round(((totalCalories * .3) / 9) * 10) / 10;
+    console.log('in MALE GOAL', goal, heightCm, weightKg, totalCalories);
   }
 
   if ( goal === "Gain Weight" ) {
-    totalCalories = weight * 11;
+    totalCalories = (totalWeight + totalHeight) - totalAge + 5;
     proteinGrams = Math.round(((totalCalories * .4) / 4) * 10) / 10;
     carbsGrams = Math.round(((totalCalories * .3) / 4) * 10) / 10;
     fatGrams = Math.round(((totalCalories * .3) / 9) * 10) / 10;
-  }
+    console.log('in MALE GOAL', goal, heightCm, weightKg, totalCalories);
+  } 
+}
 
+  if (gender === "Female"){
+    if ( goal === "Loose Weight" ) {
+    
+      totalCalories = (totalWeight + totalHeight) - totalAge - 161;
+      proteinGrams = Math.round((totalCalories / 2 / 4) * 10) / 10;
+      carbsGrams = Math.round((totalCalories / 4 / 4) * 10) / 10;
+      fatGrams = Math.round((totalCalories / 4 / 9) * 10) / 10;
+      console.log('in FEMALE GOAL', goal, heightCm, weightKg, totalCalories);
+    }
+  
+    if ( goal === "Maintain Weight" ) {
+      totalCalories = (totalWeight + totalHeight) - totalAge - 161;
+      proteinGrams = Math.round(((totalCalories * .4) / 4) * 10) / 10;
+      carbsGrams = Math.round(((totalCalories * .3) / 4) * 10) / 10;
+      fatGrams = Math.round(((totalCalories * .3) / 9) * 10) / 10;
+      console.log('in FEMALE GOAL', goal, heightCm, weightKg, totalCalories);
+    }
+  
+    if ( goal === "Gain Weight" ) {
+      totalCalories = (totalWeight + totalHeight) - totalAge - 161;
+      proteinGrams = Math.round(((totalCalories * .4) / 4) * 10) / 10;
+      carbsGrams = Math.round(((totalCalories * .3) / 4) * 10) / 10;
+      fatGrams = Math.round(((totalCalories * .3) / 9) * 10) / 10;
+      console.log('in FEMALE GOAL', goal, heightCm, weightKg, totalCalories);
+    } 
+
+  }
   return {
     proteinGrams,
     carbsGrams,
-    fatGrams
+    fatGrams,
+    totalCalories
   };
 
-}
+ }
+  
 
 /* const updateUser = (e) => {
 //*dispatch UPDATE_USER
@@ -66,13 +107,14 @@ var fatGrams;
 } */
 
 function handleSubmit(e){
-  e.preventDefault();
-  const {proteinGrams, carbsGrams, fatGrams} = macroCalculate(weight, goal);
+ e.preventDefault();
+  const {proteinGrams, carbsGrams, fatGrams, totalCalories} = macroCalculate(weight, goal);
   setProteins(proteinGrams);
   setCarbs(carbsGrams);
   setFats(fatGrams);
+  setCalories(totalCalories);  
 
-  console.log(proteinGrams, carbsGrams, fatGrams, goal, weight, height, gender, age);
+  console.log('calories',totalCalories, 'protein', proteinGrams,'carbs', carbsGrams, 'fats', fatGrams, 'goal', goal, 'weight', weight,'height', height,'gender', gender, 'age', age, 'activity', activity);
 }
 
   return (    
