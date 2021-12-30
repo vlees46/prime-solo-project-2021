@@ -72,7 +72,7 @@ function handleSubmit(e){
   setCarbs(carbsGrams);
   setFats(fatGrams);
 
-  console.log(proteinGrams, carbsGrams, fatGrams, weight);
+  console.log(proteinGrams, carbsGrams, fatGrams, goal, weight, height, gender, age);
 }
 
   return (    
@@ -83,8 +83,15 @@ function handleSubmit(e){
          <input
           type="button"
           placeholder="gender"
+          className="Form_gender"
           value='Male'
-          onClick={(e) => setGender(e.target.value)}/><br></br>
+          onClick={(e) => setGender(e.target.value)}/>
+         <input
+          type="button"
+          placeholder="gender"
+          className="Form_gender"
+          value='Female'
+          onClick={(e) => setGender(e.target.value)}/><br></br> 
            <input
               type="text"
               id="weight"
@@ -93,37 +100,90 @@ function handleSubmit(e){
               value={weight}
               className="Form_weight"
               onChange={(e) => setWeight(parseInt(e.target.value))}
+            />
+             <input
+              type="number"
+              id="age"
+              name="age"
+              placeholder="Age"
+              value={age}
+              className="Form_gender"
+              onChange={(e) => setAge(parseInt(e.target.value))}
             /><br></br>
-          
-          <label className="Form_radio">
+            <input
+              type="number"
+              id="height"
+              name="height"
+              placeholder="Height"
+              value={height}
+              className="Form_gender"
+              onChange={(e) => setHeight(parseInt(e.target.value))}
+            /><br></br>
+           <span className="Form__span">Activity Level</span><br></br>
+           
             <input
               type="radio"
+              name="Activity"
+              value="None"
+              className="Form_radio"
+              onChange={(e) => setActivity(e.target.value)}
+            />
+          <span className="Form__span">None</span>
+          <input
+              type="radio"
+              name="Activity"
+              value="Light"
+              className="Form_radio"
+              onChange={(e) => setActivity(e.target.value)}
+            />
+          <span className="Form__span">Light</span> 
+          <input
+              type="radio"
+              name="Activity"
+              value="Moderate"
+              className="Form_radio"
+              onChange={(e) => setActivity(e.target.value)}
+            />
+          <span className="Form__span">Moderate</span> 
+
+          <input
+              type="radio"
+              name="Activity"
+              value="Active"
+              className="Form_radio"
+              onChange={(e) => setActivity(e.target.value)}
+            />
+          <span className="Form__span">Active</span> <br></br>
+
+          <label className="Form_radio">
+            <input
+              type="button"
               name="Goal"
               value="Loose Weight"
-              className="Form_input"
-              onChange={(e) => setGoal(e.target.value)}
-            />
-             <span className="Form__span">Loose Weight</span>
+              className="Form_weight"
+              onClick={(e) => setGoal(e.target.value)}
+            /><br></br>
+            
           </label>
           <label className="Form_radio">
             <input
-              type="radio"
+              type="button"
               name="Goal"
               value="Maintain Weight"
-              className="Form_input"
-              onChange={(e) => setGoal(e.target.value)}
-            />
-             <span className="Form__span">Maintain Weight</span>
+              className="Form_weight"
+              onClick={(e) => setGoal(e.target.value)}
+            /><br></br>
+            
           </label>
           <label className="Form_radio">
             <input
-              type="radio"
+              type="button"
               name="Goal"
               value="Gain Weight"
-              className="Form_input"
-              onChange={(e) => setGoal(e.target.value)}
-            />
-             <span className="Form__span">Gain Weight</span>
+              className="Form_weight"
+              onClick={(e) => setGoal(e.target.value)}
+            /><br></br>
+            
           </label>
           <button onClick={(e) => { handleSubmit(e) }}>Calculate</button> 
           {proteins > 0 && (
