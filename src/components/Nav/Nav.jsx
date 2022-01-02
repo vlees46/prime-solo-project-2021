@@ -28,6 +28,10 @@ function Nav() {
 {user.role = 'ADMIN' && (
           <>
             <Link className="navLink" to="/user">
+              Home
+            </Link>
+
+            <Link className="navLink" to="/macrocalculator">
               Macro Calculator
             </Link>
 

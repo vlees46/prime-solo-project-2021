@@ -10,6 +10,7 @@ const passport = require('./strategies/user.strategy');
 // Route includes
 const userRouter = require('./routes/user.router');
 const mealRouter = require('./routes/meal.router');
+const macrocalculator = require('./routes/macrocalculator.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -26,6 +27,7 @@ app.use(passport.session());
 app.use('/api/user', userRouter);
 app.use('/api/addmeal', mealRouter);
 app.use('/api/reviewmeal', mealRouter);
+app.use('/api/macrocalculator', macrocalculator);
 
 // Serve static files
 app.use(express.static('build'));

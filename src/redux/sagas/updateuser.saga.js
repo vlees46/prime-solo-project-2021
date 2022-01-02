@@ -9,7 +9,7 @@ function* updateUser(action) {
   console.log('updateUserSaga action.payload', action.payload)
   const response = yield axios({
     method: 'POST',
-    url: '/api/user',
+    url: '/api/macrocalculator',
     data: action.payload
   })
   yield put({ type: 'GET_UPDATE' })

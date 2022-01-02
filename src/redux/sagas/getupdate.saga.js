@@ -10,7 +10,7 @@ function* getupdate(action) {
     try {
       const response = yield axios({
         method: 'GET',
-        url: '/api/user',
+        url: '/api/macrocalculator',
       })
       yield put({ 
         type: 'SET_UPDATE',

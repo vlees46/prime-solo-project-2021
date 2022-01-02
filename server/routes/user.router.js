@@ -47,21 +47,5 @@ router.post('/logout', (req, res) => {
   res.sendStatus(200);
 });
 
-router.post('/user', (req, res) => {
-  // POST route code here
-
-  const username = req.body.username;
-  const password = encryptLib.encryptPassword(req.body.password);
-
-  const queryText = `UPDATE "user" SET ("gender", "age", "weight", "height", "activity", "goal", "calories", "fats", "proteins", "carbs" WHERE username = 'admin' ) 
-    VALUES ($1, $2, $3, $4, $5, $6 ,%7, $8, $9, $10)`;
-  pool
-    .query(queryText)
-    .then(() => res.sendStatus(201))
-    .catch((err) => {
-      console.log('User registration failed: ', err);
-      res.sendStatus(500);
-    });
-});
 
 module.exports = router;

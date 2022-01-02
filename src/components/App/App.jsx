@@ -20,6 +20,7 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import ReviewMeal from '../ReviewMeal/reviewmeal.js'
+import MacroCalculator from '../Macrocalculator/macrocalculator.js'
 
 import './App.css';
 
@@ -63,11 +64,18 @@ function App() {
           </ProtectedRoute>
 
           <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
+            // logged in shows Add Meal allows admin to enter in meals for users
             exact
             path="/addmeal"
           >
             <AddMeal />
+          </ProtectedRoute>
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/macrocalculator"
+          >
+            <MacroCalculator />
           </ProtectedRoute>
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
