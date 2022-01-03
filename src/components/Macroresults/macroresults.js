@@ -27,6 +27,7 @@ const backpage = (e) =>  {
   }
   
  useEffect(() => {
+     
     dispatch({ type: 'GET_UPDATE' });
   }, []);
   
@@ -44,8 +45,36 @@ const backpage = (e) =>  {
   console.log('thisi s the bmi', bmi)
   console.log('user activity level is', user.activity)
 
-  
-  
+  function dailyexpenditure(){
+    
+
+      if (user.activity === "None") {
+          let tdee = user.calories * 1.0;
+          console.log(' in activity NONE', tdee);
+          return tdee
+          
+      }
+      
+         if (user.activity === "Light") {
+          let tdee = user.calories * 1.2;
+          console.log(' in activity LIGHT', tdee);
+          return tdee
+
+          }
+             if (user.activity === "Moderate") {
+                let tdee = user.calories * 1.4;
+               console.log(' in activity MODERATE', tdee);
+               return tdee
+              }
+                 if (user.activity === "Active") {
+                   let tdee = user.calories * 1.8;
+                   console.log(' in activity  ACTIVE', tdee);
+                   return tdee
+                     }
+  }
+
+  let tdee = Math.round(dailyexpenditure());
+
   return (
     <div>
        
@@ -101,13 +130,13 @@ const backpage = (e) =>  {
               className="Form_weight"
             /><br></br>     
 
-<span className="Form__span">TDEE</span><br></br>
+<span className="Form__span">Total Daily Energy Expenditure </span><br></br>
             <input
               type="text"
-              id="fats"
-              name="fats"
-              placeholder="fats results"
-              value={user.fats}
+              id="tdee"
+              name="tdee"
+              placeholder="tdee results"
+              value={tdee}
               className="Form_weight"
             /><br></br>     
       
