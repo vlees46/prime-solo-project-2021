@@ -21,6 +21,7 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import ReviewMeal from '../ReviewMeal/reviewmeal.js'
 import MacroCalculator from '../Macrocalculator/macrocalculator.js'
+import MacroResults from '../Macroresults/macroresults.js';
 
 import './App.css';
 
@@ -77,6 +78,16 @@ function App() {
           >
             <MacroCalculator />
           </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/macroresults"
+          >
+            <MacroResults />
+          </ProtectedRoute>
+
+
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact

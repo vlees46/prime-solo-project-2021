@@ -28,6 +28,7 @@ app.use('/api/user', userRouter);
 app.use('/api/addmeal', mealRouter);
 app.use('/api/reviewmeal', mealRouter);
 app.use('/api/macrocalculator', macrocalculator);
+app.use('/api/macroresults', macrocalculator);
 
 // Serve static files
 app.use(express.static('build'));

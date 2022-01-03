@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import macrocalculator from './macrocalculator.css';
+import MacroResults from '../Macroresults/macroresults';
 
 function  MacroCalculator() {
 
@@ -16,6 +17,7 @@ function  MacroCalculator() {
 //*Update Database
 
 const dispatch = useDispatch();
+const history = useHistory();
 
 const [gender, setGender] = useState('');
 const [age, setAge] = useState('');
@@ -46,7 +48,16 @@ const updateUser = (proteinGrams, carbsGrams, fatGrams, totalCalories) => {
     }
 
   })
-
+setGender('');
+setAge('');
+setWeight('');
+setHeight('');
+setActivity('');
+setGoal('');
+setCalories('');
+setFats('');
+setProteins('');
+setCarbs('');
 } 
 
 
@@ -124,6 +135,8 @@ const totalAge = age * 5;
  
   
   return {
+
+    
     proteinGrams,
     carbsGrams,
     fatGrams,
@@ -145,6 +158,11 @@ function handleSubmit(e){
   console.log('handle submit','protein', proteinGrams,'carbs', carbsGrams, 'fats', fatGrams, 'calories', totalCalories);
   
  updateUser(proteinGrams, carbsGrams, fatGrams, totalCalories);
+}
+
+const reiewResults = (e) =>  {
+  history.push('/macroresults');
+
 }
 
   return (    
@@ -259,8 +277,16 @@ function handleSubmit(e){
             
           </label>
           <button onClick={(e) => { handleSubmit(e) }}>Calculate</button> 
+          <button onClick={(e) => { reiewResults(e) }}>Results</button>
           {proteinGrams > 0 && (
+           
             <div className="Result">
+              <input
+              type="text"
+              name="protein"
+              value={proteinGrams}
+              className="Form_weight"            
+            />
               <p>Protein: {proteinGrams}g</p>
               <p>Carbs: {carbsGrams}g</p>
               <p>Fat: {fatGrams}g</p>
