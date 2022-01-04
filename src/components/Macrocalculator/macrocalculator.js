@@ -25,10 +25,10 @@ const [weight, setWeight] = useState('');
 const [height, setHeight] = useState('');
 const [activity, setActivity] = useState('');
 const [goal, setGoal] = useState('');
-const [totalCalories, setCalories] = useState('');  // calculated
-const [fatGrams, setFats] = useState('');          // calculated
-const [carbsGrams, setCarbs] = useState('');        // calculated
-const [proteinGrams, setProteins] = useState('');  // calculated
+const [totalCalories, setCalories] = useState('0');  // calculated
+const [fatGrams, setFats] = useState('0');          // calculated
+const [carbsGrams, setCarbs] = useState('0');        // calculated
+const [proteinGrams, setProteins] = useState('0');  // calculated
 
 const updateUser = (proteinGrams, carbsGrams, fatGrams, totalCalories) => {
   console.log('reducers set', proteinGrams, carbsGrams, fatGrams, totalCalories);
@@ -149,7 +149,7 @@ const totalAge = age * 5;
 
 
 function handleSubmit(e){
- e.preventDefault();
+// e.preventDefault();
   const {proteinGrams, carbsGrams, fatGrams, totalCalories} = macroCalculate(weight, goal);
   setProteins(proteinGrams);
   setCarbs(carbsGrams);

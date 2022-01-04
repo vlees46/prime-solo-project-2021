@@ -11,6 +11,7 @@ const passport = require('./strategies/user.strategy');
 const userRouter = require('./routes/user.router');
 const mealRouter = require('./routes/meal.router');
 const macrocalculator = require('./routes/macrocalculator.router');
+const usermeal = require('./routes/usermeals.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -29,6 +30,7 @@ app.use('/api/addmeal', mealRouter);
 app.use('/api/reviewmeal', mealRouter);
 app.use('/api/macrocalculator', macrocalculator);
 app.use('/api/macroresults', macrocalculator);
+app.use('/api/usermeals', usermeal);
 
 // Serve static files
 app.use(express.static('build'));

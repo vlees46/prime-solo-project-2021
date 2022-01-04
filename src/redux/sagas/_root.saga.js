@@ -7,6 +7,7 @@ import getReviewSaga from './getreview.saga';
 import deleteMealSaga from './deletemeal.saga';
 import getUpdateSaga from './getupdate.saga';
 import updateUserSaga from './updateuser.saga';
+import getUserMealSaga from './getusermeal.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -24,6 +25,7 @@ export default function* rootSaga() {
     getReviewSaga(),
     deleteMealSaga(),
     getUpdateSaga(),
-    updateUserSaga()
+    updateUserSaga(),
+    getUserMealSaga()
   ]);
 }

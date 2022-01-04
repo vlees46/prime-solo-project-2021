@@ -22,6 +22,7 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 import ReviewMeal from '../ReviewMeal/reviewmeal.js'
 import MacroCalculator from '../Macrocalculator/macrocalculator.js'
 import MacroResults from '../Macroresults/macroresults.js';
+import UserMeals from '../UserMeals/usermeals.js';
 
 import './App.css';
 
@@ -94,6 +95,13 @@ function App() {
             path="/reviewmeal"
           >
             <ReviewMeal />
+          </ProtectedRoute>
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/usermeals"
+          >
+            <UserMeals/>
           </ProtectedRoute>
 
 
