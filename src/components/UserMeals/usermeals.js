@@ -38,7 +38,15 @@ const backpage = (e) =>  {
   return (
     <div>
        <h1> User Meals</h1>
-    
+       <ul>
+        {usermeals.map((usermeal) => {
+          return <li key={usermeal.id}>Meal Time:{usermeal.mealtime}<br></br> Description: {usermeal.description} 
+          
+          </li>
+          
+        })}
+      </ul>
+
       <button onClick={(e) => { backpage(e) }}>Back</button>
   </div>
   );
