@@ -1,12 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
-import macrocalculator from './macrocalculator.css';
 import MacroResults from '../Macroresults/macroresults';
+import useStyles from './macrostyles';
+import Button from "@material-ui/core/Button";
+import { Box } from '@material-ui/core';
+import { Typography, AppBar, Card, CardActions, CardContent, CardMedia, CssBaseline, Grid, Toolbar, Container } from '@material-ui/core';
+import CalculateIcon from '@mui/icons-material/Calculate';
+import { makeStyles } from '@material-ui/core';
+
 
 function  MacroCalculator() {
 
-
+const classes = useStyles();
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
 
@@ -168,76 +174,113 @@ const reiewResults = (e) =>  {
   return (    
     
 
-      <div>
-        <h2>Welcome, {user.username}!</h2>
-        <form className="Form">
-         <input
-          type="button"
+      <div className={classes.container}>
+        
+        <main>
+            <div>
+                <Container maxWidth="sm">
+                  <Typography variant="h5" align="center" color="textPrimary" gutterBottom>
+                    Macro Calculator
+                  </Typography>
+                  <Typography variant="h5" align="center" color="textSecondary" paragraph>
+                  Welcome, {user.username}!
+                  </Typography>
+                </Container>
+            </div>
+        </main>
+             
+                 
+        <CssBaseline />
+        
+        <Grid container rowspacing={1} columnspacing={{ xs: 1, sm: 2, md: 3 }}>
+            <Grid item xs={5} >
+         <Button
+          variant="contained"
+      
           placeholder="gender"
-          className="Form_gender"
           value='Male'
-          onClick={(e) => setGender(e.target.value)}/>
-         <input
-          type="button"
+          onClick={() => {setGender("Male")}} 
+          color="primary">Male</Button>
+        </Grid>
+
+        <Grid item xs={5} >
+          <Button
+          variant="contained"
+        
           placeholder="gender"
-          className="Form_gender"
           value='Female'
-          onClick={(e) => setGender(e.target.value)}/><br></br> 
-           <input
+          onClick={() => setGender("Female")}
+          color="primary">Female</Button><br></br>
+         </Grid>
+
+         <Grid item xs={5} >
+          <input
               type="text"
               id="weight"
               name="weight"
               placeholder="Current Weight"
-              value={weight}
-              className="Form_weight"
+              value={weight}          
               onChange={(e) => setWeight(e.target.value)}
             />
-             <input
+        </Grid>
+
+
+          <input
               type="number"
               id="age"
               name="age"
               placeholder="Age"
-              value={age}
-              className="Form_gender"
+              value={age}              
               onChange={(e) => setAge(e.target.value)}
-            /><br></br>
-            <input
+            />  
+        
+
+<Grid item xs={5} >    
+             <input
               type="number"
               id="height"
               name="height"
-              placeholder="Height"
+              placeholder="height"
               value={height}
-              className="Form_gender"
               onChange={(e) => setHeight(e.target.value)}
-            /><br></br>
-           <span className="Form__span">Activity Level</span><br></br>
-           
-            <input
+            />      
+          </Grid>
+
+        </Grid>
+        
+        <Grid container spacing={4} justifyContent="center">
+        <span className="Form__span">Activity Level</span><br></br>
+        <Grid item >
+             
+      
+        <input
               type="radio"
               name="Activity"
               value="None"
               className="Form_radio"
               onChange={(e) => setActivity(e.target.value)}
             />
-          <span className="Form__span">None</span>
-          <input
+              <span className="Form__span">None</span>
+          
+        <input
               type="radio"
               name="Activity"
               value="Light"
               className="Form_radio"
               onChange={(e) => setActivity(e.target.value)}
             />
-          <span className="Form__span">Light</span> 
-          <input
+             <span className="Form__span">Light</span>
+      
+        <input
               type="radio"
               name="Activity"
               value="Moderate"
               className="Form_radio"
               onChange={(e) => setActivity(e.target.value)}
             />
-          <span className="Form__span">Moderate</span> 
-
-          <input
+               <span className="Form__span">Moderate</span> 
+         
+               <input
               type="radio"
               name="Activity"
               value="Active"
@@ -246,55 +289,52 @@ const reiewResults = (e) =>  {
             />
           <span className="Form__span">Active</span> <br></br>
 
-          <label className="Form_radio">
-            <input
-              type="button"
+
+          <Button
+              variant="contained"
+              align="center"
               name="Goal"
               value="Loose Weight"
               className="Form_weight"
-              onClick={(e) => setGoal(e.target.value)}
-            /><br></br>
-            
-          </label>
-          <label className="Form_radio">
-            <input
-              type="button"
+              onClick={() => setGoal("Loose Weight")}       
+              color="primary">Loose Weight </Button>
+          <Button
+              variant="contained"
+              align="center"              
               name="Goal"
+              onClick={() => setGoal("Maintain Weight")}
               value="Maintain Weight"
-              className="Form_weight"
-              onClick={(e) => setGoal(e.target.value)}
-            /><br></br>
+              color="primary">Maintain Weight </Button>
             
-          </label>
-          <label className="Form_radio">
-            <input
-              type="button"
+            <Button
+              variant="contained"
+              align="center"      
               name="Goal"
               value="Gain Weight"
               className="Form_weight"
-              onClick={(e) => setGoal(e.target.value)}
-            /><br></br>
-            
-          </label>
-          <button onClick={(e) => { handleSubmit(e) }}>Calculate</button> 
-          <button onClick={(e) => { reiewResults(e) }}>Results</button>
-          {proteinGrams > 0 && (
-           
-            <div className="Result">
-              <input
-              type="text"
-              name="protein"
-              value={proteinGrams}
-              className="Form_weight"            
-            />
-              <p>Protein: {proteinGrams}g</p>
-              <p>Carbs: {carbsGrams}g</p>
-              <p>Fat: {fatGrams}g</p>
-            </div>
-          )}
-        </form>
+              onClick={() => setGoal("Gain Weight")}
+              color="primary">Gain Weight </Button>
 
-    
+        
+            
+
+        </Grid>
+        </Grid>
+
+
+        <Grid container spacing={4} justifyContent="center">
+         <Grid item >
+
+          <button variant="outlined" onClick={(e) => { handleSubmit(e) }}>Calculate</button> 
+          <button variant="outlined" onClick={(e) => { reiewResults(e) }}>Results</button>
+          
+        </Grid>
+        </Grid>       
+       
+          
+          
+          
+  
   </div>
     
   );

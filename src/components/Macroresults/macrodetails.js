@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import usermeals from '../UserMeals/usermeals';
+import { Button } from '@material-ui/core';
 
 
 
@@ -82,8 +83,9 @@ const backpage = (e) =>  {
                      }
   }
   
-  let tdee = Math.round(dailyexpenditure());
   dailyexpenditure();
+  let tdee = Math.round(dailyexpenditure());
+  
 
   return (
     <div>
