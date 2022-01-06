@@ -1,13 +1,16 @@
+
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import MacroResults from '../Macroresults/macroresults';
 import useStyles from './macrostyles';
 import Button from "@material-ui/core/Button";
-import { Box } from '@material-ui/core';
+import { Box, Radio } from '@material-ui/core';
 import { Typography, AppBar, Card, CardActions, CardContent, CardMedia, CssBaseline, Grid, Toolbar, Container } from '@material-ui/core';
 import CalculateIcon from '@mui/icons-material/Calculate';
 import { makeStyles } from '@material-ui/core';
+import { Stack, Paper } from '@mui/material';
+import { styled } from '@mui/material/styles'; 
 
 
 function  MacroCalculator() {
@@ -185,34 +188,35 @@ const reiewResults = (e) =>  {
                   <Typography variant="h5" align="center" color="textSecondary" paragraph>
                   Welcome, {user.username}!
                   </Typography>
+                 
                 </Container>
             </div>
         </main>
              
-                 
+       <div className={classes.container}>      
         <CssBaseline />
-        
-        <Grid container rowspacing={1} columnspacing={{ xs: 1, sm: 2, md: 3 }}>
-            <Grid item xs={5} >
+        <Grid container spacing={2} direction="column" alignItems="center" justifyContent="center">
+         <Grid item xs={6} container alignItems="center" justifyContent="center">
+        <Grid item xs={3} >
          <Button
           variant="contained"
-      
           placeholder="gender"
           value='Male'
           onClick={() => {setGender("Male")}} 
           color="primary">Male</Button>
-        </Grid>
+          </Grid>
 
-        <Grid item xs={5} >
-          <Button
+        <Grid item xs={3}> 
+         <Button
           variant="contained"
         
           placeholder="gender"
           value='Female'
           onClick={() => setGender("Female")}
-          color="primary">Female</Button><br></br>
+          color="primary">Female</Button>
          </Grid>
-
+        </Grid> 
+        <Grid item xs={6} container alignItems="center" justifyContent="center">
          <Grid item xs={5} >
           <input
               type="text"
@@ -223,7 +227,7 @@ const reiewResults = (e) =>  {
               onChange={(e) => setWeight(e.target.value)}
             />
         </Grid>
-
+        <Grid item xs={5} >
 
           <input
               type="number"
@@ -233,9 +237,9 @@ const reiewResults = (e) =>  {
               value={age}              
               onChange={(e) => setAge(e.target.value)}
             />  
-        
+        </Grid>
 
-<Grid item xs={5} >    
+          <Grid item xs={5} >    
              <input
               type="number"
               id="height"
@@ -245,50 +249,62 @@ const reiewResults = (e) =>  {
               onChange={(e) => setHeight(e.target.value)}
             />      
           </Grid>
-
+          </Grid>
         </Grid>
         
-        <Grid container spacing={4} justifyContent="center">
-        <span className="Form__span">Activity Level</span><br></br>
-        <Grid item >
-             
-      
-        <input
-              type="radio"
+        
+        <Grid item xs={12} container alignItems="center" justifyContent="center" direction="column">
+        <Grid item xs={6} container alignItems="center" justifyContent="center">
+        
+        <Grid item xs={2} >   
+        <span className="Form__span">Activity Level</span> 
+        <Radio
+              
               name="Activity"
               value="None"
               className="Form_radio"
               onChange={(e) => setActivity(e.target.value)}
             />
+        </Grid>
               <span className="Form__span">None</span>
-          
-        <input
-              type="radio"
+              
+        <Grid item xs={2}>    
+        <Radio
+            
               name="Activity"
               value="Light"
               className="Form_radio"
               onChange={(e) => setActivity(e.target.value)}
             />
+            </Grid>
+
              <span className="Form__span">Light</span>
-      
-        <input
-              type="radio"
-              name="Activity"
-              value="Moderate"
-              className="Form_radio"
-              onChange={(e) => setActivity(e.target.value)}
-            />
+             <Grid item xs={2} >    
+        
+                <Radio
+                 
+                 name="Activity"
+                 value="Moderate"
+                 className="Form_radio"
+                 onChange={(e) => setActivity(e.target.value)}
+                />
+             </Grid>
+
                <span className="Form__span">Moderate</span> 
-         
-               <input
-              type="radio"
+               <Grid item xs={2} >  
+               <Radio
+            
               name="Activity"
               value="Active"
               className="Form_radio"
               onChange={(e) => setActivity(e.target.value)}
             />
-          <span className="Form__span">Active</span> <br></br>
+            
 
+          <span className="Form__span">Active</span>
+          </Grid>
+          </Grid>
+        
 
           <Button
               variant="contained"
@@ -319,7 +335,8 @@ const reiewResults = (e) =>  {
             
 
         </Grid>
-        </Grid>
+      
+        
 
 
         <Grid container spacing={4} justifyContent="center">
@@ -329,11 +346,12 @@ const reiewResults = (e) =>  {
           <button variant="outlined" onClick={(e) => { reiewResults(e) }}>Results</button>
           
         </Grid>
-        </Grid>       
+        </Grid>
+           
        
           
           
-          
+        </div>          
   
   </div>
     
