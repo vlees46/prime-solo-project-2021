@@ -20,8 +20,11 @@ function macrodetails() {
   const dispatch = useDispatch();
   const history = useHistory();
 
+ 
  const user = useSelector((store) => store.user);
-console.log('macroresults test USER REDUCER', user);
+
+
+ console.log('macro details test  UPDATE REDUCER', user);
 
 
   

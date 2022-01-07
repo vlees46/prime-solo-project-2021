@@ -21,7 +21,7 @@ const router = express.Router();
            console.log('this is sqlValues in GET', sqlValues);
 
        pool.query(sqlText, sqlValues)
-       .then((dbres) => res.sendStatus(201))
+       .then((dbres) => res.send(dbres.rows))
   .catch((dberror) => {
     console.log('Opps you messed up DB error', dberror);
     res.sendStatus(500)

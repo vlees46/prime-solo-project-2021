@@ -16,9 +16,11 @@ function* updateUser(action) {
 }
 
 
+
+
 function* updateUserSaga(){
-//  yield takeLatest('FETCH_REVIEW', fetchReview);
-  yield takeLatest('UPDATE_USER', updateUser);
+   yield takeLatest('UPDATE_USER', updateUser);
+   
 }
  
   export default updateUserSaga;

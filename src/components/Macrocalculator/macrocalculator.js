@@ -4,20 +4,20 @@ import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import MacroResults from '../Macroresults/macroresults';
 import useStyles from './macrostyles';
-import Button from "@material-ui/core/Button";
-import { Box, Radio } from '@material-ui/core';
-import { Typography, AppBar, Card, CardActions, CardContent, CardMedia, CssBaseline, Grid, Toolbar, Container } from '@material-ui/core';
+import { Typography, CssBaseline, Grid, Container } from '@material-ui/core';
 import CalculateIcon from '@mui/icons-material/Calculate';
-import { makeStyles } from '@material-ui/core';
+import { makeStyles, Box, Radio, Button } from '@material-ui/core';
 import { Stack, Paper } from '@mui/material';
 import { styled } from '@mui/material/styles'; 
+import { FormControl } from '@mui/material';
+import { FormControlLabel } from '@mui/material';
 
 
 function  MacroCalculator() {
 
 const classes = useStyles();
   // this component doesn't do much to start, just renders some user reducer info to the DOM
-  const user = useSelector((store) => store.user);
+ // const user = useSelector((store) => store.user);
 
 //*Create state for calculator variables  -- DONE
 //*Create form and check to see if state is being entered properly as an object - DONE
@@ -34,12 +34,16 @@ const [weight, setWeight] = useState('');
 const [height, setHeight] = useState('');
 const [activity, setActivity] = useState('');
 const [goal, setGoal] = useState('');
-const [totalCalories, setCalories] = useState('0');  // calculated
-const [fatGrams, setFats] = useState('0');          // calculated
-const [carbsGrams, setCarbs] = useState('0');        // calculated
-const [proteinGrams, setProteins] = useState('0');  // calculated
+const [totalCalories, setCalories] = useState('');  // calculated
+const [fatGrams, setFats] = useState('');          // calculated
+const [carbsGrams, setCarbs] = useState('');        // calculated
+const [proteinGrams, setProteins] = useState('');  // calculated
+
+
+const user = useSelector((store) => store.user);
 
 const updateUser = (proteinGrams, carbsGrams, fatGrams, totalCalories) => {
+ // e.preventDefault();
   console.log('reducers set', proteinGrams, carbsGrams, fatGrams, totalCalories);
   dispatch({
     type: 'UPDATE_USER',
@@ -57,16 +61,8 @@ const updateUser = (proteinGrams, carbsGrams, fatGrams, totalCalories) => {
     }
 
   })
-setGender('');
-setAge('');
-setWeight('');
-setHeight('');
-setActivity('');
-setGoal('');
-setCalories('');
-setFats('');
-setProteins('');
-setCarbs('');
+
+
 } 
 
 
@@ -155,24 +151,31 @@ const totalAge = age * 5;
  }
   
 
-
-
 function handleSubmit(e){
-// e.preventDefault();
+ e.preventDefault();
+  
   const {proteinGrams, carbsGrams, fatGrams, totalCalories} = macroCalculate(weight, goal);
   setProteins(proteinGrams);
   setCarbs(carbsGrams);
   setFats(fatGrams);
   setCalories(totalCalories);  
+
   console.log('handle submit','protein', proteinGrams,'carbs', carbsGrams, 'fats', fatGrams, 'calories', totalCalories);
   
  updateUser(proteinGrams, carbsGrams, fatGrams, totalCalories);
+
+ 
 }
 
 const reiewResults = (e) =>  {
-  history.push('/macroresults');
+
+  
+
+  history.push("/macroresults");
+  
 
 }
+
 
   return (    
     
@@ -195,10 +198,14 @@ const reiewResults = (e) =>  {
              
        <div className={classes.container}>      
         <CssBaseline />
-        <Grid container spacing={2} direction="column" alignItems="center" justifyContent="center">
-         <Grid item xs={6} container alignItems="center" justifyContent="center">
+
+        <Grid item xs={12} container alignItems="center" justifyContent="center" direction="column">
+           <Grid item xs={6} container alignItems="center" justifyContent="center">
+           
+        
         <Grid item xs={3} >
          <Button
+         
           variant="contained"
           placeholder="gender"
           value='Male'
@@ -215,15 +222,21 @@ const reiewResults = (e) =>  {
           onClick={() => setGender("Female")}
           color="primary">Female</Button>
          </Grid>
-        </Grid> 
-        <Grid item xs={6} container alignItems="center" justifyContent="center">
+         </Grid>
+         </Grid>
+         
+         
+
+         
+         <Grid item xs={12} container alignItems="center" justifyContent="center" direction="column">
+        
          <Grid item xs={5} >
           <input
               type="text"
               id="weight"
               name="weight"
               placeholder="Current Weight"
-              value={weight}          
+              value={weight}        
               onChange={(e) => setWeight(e.target.value)}
             />
         </Grid>
@@ -250,91 +263,92 @@ const reiewResults = (e) =>  {
             />      
           </Grid>
           </Grid>
-        </Grid>
+      
+        
         
         
         <Grid item xs={12} container alignItems="center" justifyContent="center" direction="column">
-        <Grid item xs={6} container alignItems="center" justifyContent="center">
+           <Grid item xs={6} container alignItems="center" justifyContent="center">
         
-        <Grid item xs={2} >   
-        <span className="Form__span">Activity Level</span> 
-        <Radio
-              
-              name="Activity"
-              value="None"
-              className="Form_radio"
-              onChange={(e) => setActivity(e.target.value)}
-            />
-        </Grid>
-              <span className="Form__span">None</span>
-              
-        <Grid item xs={2}>    
-        <Radio
-            
-              name="Activity"
-              value="Light"
-              className="Form_radio"
-              onChange={(e) => setActivity(e.target.value)}
-            />
-            </Grid>
-
-             <span className="Form__span">Light</span>
-             <Grid item xs={2} >    
-        
-                <Radio
-                 
-                 name="Activity"
-                 value="Moderate"
-                 className="Form_radio"
-                 onChange={(e) => setActivity(e.target.value)}
+             <Grid item xs={3} >   
+               <FormControlLabel
+                value="top"
+                control={<Radio name="Activity"
+                value="None"
+                onChange={(e) => setActivity(e.target.value)} />}
+                label="None"
+                labelPlacement="top"
                 />
-             </Grid>
+               </Grid>
+                    
+             <Grid item xs={3}>    
+              <FormControlLabel
+                 value="top"
+                 control={<Radio name="Activity"
+                 value="Light"
+                 onChange={(e) => setActivity(e.target.value)} />}
+                 label="Light"
+                 labelPlacement="top"
+                 />    
+                </Grid>
 
-               <span className="Form__span">Moderate</span> 
-               <Grid item xs={2} >  
-               <Radio
-            
-              name="Activity"
-              value="Active"
-              className="Form_radio"
-              onChange={(e) => setActivity(e.target.value)}
-            />
-            
+             
+             <Grid item xs={3} >    
 
-          <span className="Form__span">Active</span>
-          </Grid>
+               <FormControlLabel
+                 value="top"
+                 control={<Radio name="Activity"
+                 value="Moderate"
+                 onChange={(e) => setActivity(e.target.value)} />}
+                 label="Moderate"
+                 labelPlacement="top"
+                 />    
+              </Grid>
+
+               
+            <Grid item xs={3} >  
+            <FormControlLabel
+                 value="top"
+                 control={<Radio name="Activity"
+                 value="Active"
+                 onChange={(e) => setActivity(e.target.value)} />}
+                 label="Active"
+                 labelPlacement="top"
+                 />    
+              </Grid>
           </Grid>
         
-
-          <Button
-              variant="contained"
-              align="center"
+       <Grid item xs={6} container alignItems="center" justifyContent="center" direction="column">  
+        
+          <Grid item xs={6} >   
+             <Button
+              variant="contained"          
               name="Goal"
               value="Loose Weight"
-              className="Form_weight"
               onClick={() => setGoal("Loose Weight")}       
-              color="primary">Loose Weight </Button>
-          <Button
+              color="primary">Lose Weight </Button>
+           </Grid>
+          <Grid item xs={6} >   
+            <Button
               variant="contained"
-              align="center"              
               name="Goal"
               onClick={() => setGoal("Maintain Weight")}
               value="Maintain Weight"
               color="primary">Maintain Weight </Button>
-            
+            </Grid>
+          <Grid item xs={6} >   
             <Button
               variant="contained"
-              align="center"      
               name="Goal"
               value="Gain Weight"
-              className="Form_weight"
               onClick={() => setGoal("Gain Weight")}
               color="primary">Gain Weight </Button>
+              </Grid>
 
-        
-            
+</Grid>
+</Grid>         
 
-        </Grid>
+      
       
         
 
@@ -342,8 +356,8 @@ const reiewResults = (e) =>  {
         <Grid container spacing={4} justifyContent="center">
          <Grid item >
 
-          <button variant="outlined" onClick={(e) => { handleSubmit(e) }}>Calculate</button> 
-          <button variant="outlined" onClick={(e) => { reiewResults(e) }}>Results</button>
+          <Button variant="outlined" onClick={(e) => { handleSubmit(e) }}>Calculate</Button> 
+          <Button variant="outlined" onClick={(e) => { reiewResults(e) }}>Results</Button>
           
         </Grid>
         </Grid>
