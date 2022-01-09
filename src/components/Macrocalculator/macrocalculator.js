@@ -10,7 +10,8 @@ import { makeStyles, Box, Radio, Button } from '@material-ui/core';
 import { Stack, Paper } from '@mui/material';
 import { styled } from '@mui/material/styles'; 
 import { FormControl } from '@mui/material';
-import { FormControlLabel } from '@mui/material';
+import { FormControlLabel, OutlinedInput, TextField } from '@mui/material';
+import InputAdornment from '@mui/material/InputAdornment'; 
 
 
 function  MacroCalculator() {
@@ -231,37 +232,39 @@ const reiewResults = (e) =>  {
          <Grid item xs={12} container alignItems="center" justifyContent="center" direction="column">
         
          <Grid item xs={5} >
-          <input
-              type="text"
-              id="weight"
-              name="weight"
-              placeholder="Current Weight"
-              value={weight}        
-              onChange={(e) => setWeight(e.target.value)}
-            />
+
+         <OutlinedInput
+          variant="outlined"
+          size="small"
+          type='text' multiline rows={1}
+          placeholder="weight"
+          endAdornment={<InputAdornment position="end">lbs</InputAdornment>}
+          value={weight}   
+          onChange={(e) => setWeight(e.target.value)}
+          />
+
+          
         </Grid>
         <Grid item xs={5} >
-
-          <input
-              type="number"
-              id="age"
-              name="age"
-              placeholder="Age"
-              value={age}              
-              onChange={(e) => setAge(e.target.value)}
-            />  
+        <OutlinedInput
+          variant="outlined"
+          size="small"
+          type='text' multiline rows={1}
+          placeholder="height"
+          endAdornment={<InputAdornment position="end">in</InputAdornment>}
+          value={height}   
+          onChange={(e) => setHeight(e.target.value)} />
+          
         </Grid>
 
-          <Grid item xs={5} >    
-             <input
-              type="number"
-              id="height"
-              name="height"
-              placeholder="height"
-              value={height}
-              onChange={(e) => setHeight(e.target.value)}
-            />      
-          </Grid>
+        
+        <TextField
+          variant="outlined"
+          type='text' multiline rows={1}
+          placeholder="Age"
+          size="small"
+          value={age}   
+          onChange={(e) => setAge(e.target.value)}/>    
           </Grid>
       
         
