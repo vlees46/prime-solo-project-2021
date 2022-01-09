@@ -26,6 +26,7 @@ export default function* rootSaga() {
     deleteMealSaga(),
     getUpdateSaga(),
     updateUserSaga(),
-    getUserMealSaga()
+    getUserMealSaga(),
+    
   ]);
 }

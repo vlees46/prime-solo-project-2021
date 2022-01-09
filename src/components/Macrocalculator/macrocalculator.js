@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import MacroResults from '../Macroresults/macroresults';
 import useStyles from './macrostyles';
@@ -41,6 +41,7 @@ const [carbsGrams, setCarbs] = useState('');        // calculated
 const [proteinGrams, setProteins] = useState('');  // calculated
 
 
+
 const user = useSelector((store) => store.user);
 
 const updateUser = (proteinGrams, carbsGrams, fatGrams, totalCalories) => {
@@ -65,6 +66,60 @@ const updateUser = (proteinGrams, carbsGrams, fatGrams, totalCalories) => {
 
 
 } 
+
+const handleWeightChange = (e) => {
+  dispatch({
+    type: 'EDIT_WEIGHT',
+    payload: e.target.value
+    
+  })
+ 
+}
+
+
+
+const handleHeightChange = (e) => {
+  e.preventDefault();
+  dispatch({
+    type: 'EDIT_HEIGHT',
+    payload: e.target.value
+  })
+}
+
+
+const handleAgeChange = (e) => {
+  dispatch({
+    type: 'EDIT_AGE',
+    payload: e.target.value
+  })
+}
+
+const handleSubmit = (e) => {
+  e.preventDefault();
+  dispatch({
+    type: 'EDIT_STUDENT',
+    payload: {
+      
+      weight: user.weight,
+      height: user.height,
+      age: user.age
+    }
+  })
+ 
+
+  history.push('/macrocalculator');
+
+  const {proteinGrams, carbsGrams, fatGrams, totalCalories} = macroCalculate(weight, goal);
+  setProteins(proteinGrams);
+  setCarbs(carbsGrams);
+  setFats(fatGrams);
+  setCalories(totalCalories);  
+
+  console.log('handle submit','protein', proteinGrams,'carbs', carbsGrams, 'fats', fatGrams, 'calories', totalCalories);
+  
+ updateUser(proteinGrams, carbsGrams, fatGrams, totalCalories);
+}
+
 
 
 function macroCalculate(weight, goal) {
@@ -152,21 +207,6 @@ const totalAge = age * 5;
  }
   
 
-function handleSubmit(e){
- e.preventDefault();
-  
-  const {proteinGrams, carbsGrams, fatGrams, totalCalories} = macroCalculate(weight, goal);
-  setProteins(proteinGrams);
-  setCarbs(carbsGrams);
-  setFats(fatGrams);
-  setCalories(totalCalories);  
-
-  console.log('handle submit','protein', proteinGrams,'carbs', carbsGrams, 'fats', fatGrams, 'calories', totalCalories);
-  
- updateUser(proteinGrams, carbsGrams, fatGrams, totalCalories);
-
- 
-}
 
 const reiewResults = (e) =>  {
 
@@ -241,7 +281,8 @@ const reiewResults = (e) =>  {
           endAdornment={<InputAdornment position="end">lbs</InputAdornment>}
           value={weight}   
           onChange={(e) => setWeight(e.target.value)}
-          />
+           />
+          
 
           
         </Grid>
@@ -253,7 +294,8 @@ const reiewResults = (e) =>  {
           placeholder="height"
           endAdornment={<InputAdornment position="end">in</InputAdornment>}
           value={height}   
-          onChange={(e) => setHeight(e.target.value)} />
+          onChange={(e) => setHeight(e.target.value)}
+             />
           
         </Grid>
 
@@ -264,7 +306,8 @@ const reiewResults = (e) =>  {
           placeholder="Age"
           size="small"
           value={age}   
-          onChange={(e) => setAge(e.target.value)}/>    
+          onChange={(e) => setAge(e.target.value)} />
+          
           </Grid>
       
         

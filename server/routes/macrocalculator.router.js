@@ -28,6 +28,23 @@ const router = express.Router();
   })   
   });
 
+  router.get('/:id', (req, res) => {
+    const sqlText = `
+      SELECT * FROM user WHERE id = $1;
+    `;
+    const sqlValues = [
+         req.params.id
+    ];
+    pool.query(sqlText, sqlValues)
+      .then((dbRes) => {
+        res.send(dbRes.rows[0]);
+      })
+      .catch((dbErr) => {
+        console.log('SELECT database error', dbErr);
+        res.sendStatus(500);
+      });
+  });
+
   router.post('/', (req, res) => {
     console.log(req.user);
     console.log(req.body);

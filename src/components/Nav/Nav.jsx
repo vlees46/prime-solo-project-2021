@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import { useSelector } from 'react-redux';
+
+
 import {
   AppBar,
   Toolbar,
@@ -25,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "15px",
     marginLeft: theme.spacing(5),
     "&:hover": {
-      color: "yellow",
+      color: "grey",
       borderBottom: "1px solid white",
     },
   },
@@ -70,9 +72,9 @@ function Nav() {
             <Link className={classes.link} to="/addmeal">
               Add Meal
             </Link>
-            <div className={classes.navlinks}>      
+               
             <LogOutButton className={classes.link} />
-            </div>
+            
             </div>   
         )}
        
