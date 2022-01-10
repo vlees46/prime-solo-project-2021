@@ -15,25 +15,10 @@ function* updateUser(action) {
   yield put({ type: 'GET_UPDATE' })
 }
 
-function* fetchOneStudent(action) {
-  try {
-    const response = yield axios({
-      method: 'GET',
-      url: `/api/macrocalculator/${action.payload}`
-    })
-    const userToEdit = response.data;
-    yield put({
-      type: 'SET_USER_TO_EDIT',
-      payload: userToEdit
-    })
-  } catch (err) {
-    console.log(err);
-  }
-}
+
 
 function* updateUserSaga(){
    yield takeLatest('UPDATE_USER', updateUser);
-   yield takeLatest('FETCH_ONE_STUDENT', fetchOneStudent);
    
 }
  

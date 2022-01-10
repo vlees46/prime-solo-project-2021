@@ -1,6 +1,9 @@
 /* --------------------------------------------------------------------------------
 Grid
 -------------------------------------------------------------------------------- */
+body {
+background-color: #B8D0EB;
+}
 
 .grid {
   display: flex;
@@ -77,4 +80,22 @@ Grid
 .grid-col_12 {
   flex-basis: 100%;
   max-width: 100%;
+}
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 18px;
+}
+
+img { 
+  width: 100%;
+  height: auto;
+  
+}
+
+.p1 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size:2vw
 }

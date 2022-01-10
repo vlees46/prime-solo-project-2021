@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {useSelector} from 'react-redux';
+import { Button, Grid, Box } from '@mui/material';
+import { borders } from '@mui/system';
 
 function LoginForm() {
   const [username, setUsername] = useState('');
@@ -25,15 +27,26 @@ function LoginForm() {
   }; // end login
 
   return (
-    <form className="formPanel" onSubmit={login}>
+    <form   onSubmit={login}>
       <h2>Login</h2>
+      
+      <Grid
+      container
+      direction="column"
+      justifyContent="space-evenly"
+      alignItems="center"
+     
+      >
       {errors.loginMessage && (
         <h3 className="alert" role="alert">
           {errors.loginMessage}
         </h3>
       )}
+
+      <Box  style={{ backgroundColor: '#2C2829', color: 'white' }} sx={{ borderRadius: 1 }}>
       <div>
-        <label htmlFor="username">
+      
+        <label style={{ color: 'white' }} htmlFor="username">
           Username:
           <input
             type="text"
@@ -43,9 +56,11 @@ function LoginForm() {
             onChange={(event) => setUsername(event.target.value)}
           />
         </label>
+      
       </div>
       <div>
-        <label htmlFor="password">
+  
+        <label style={{ color: 'white' }}  htmlFor="password">
           Password:
           <input
             type="password"
@@ -55,10 +70,22 @@ function LoginForm() {
             onChange={(event) => setPassword(event.target.value)}
           />
         </label>
+        
       </div>
+      </Box> 
+      </Grid><br></br>
+    
       <div>
-        <input className="btn" type="submit" name="submit" value="Log In" />
+      <Grid
+      container
+      direction="column"
+      justifyContent="space-evenly"
+      alignItems="center">
+
+        <Button variant="contained" style={{ backgroundColor: '#A663CC', color: 'white' }} type="submit" name="submit" value="Log In" >Log In</Button><br></br>
+        </Grid>
       </div>
+     
     </form>
   );
 }

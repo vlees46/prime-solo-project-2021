@@ -14,6 +14,7 @@ import { FormControlLabel, OutlinedInput, TextField } from '@mui/material';
 import InputAdornment from '@mui/material/InputAdornment'; 
 
 
+
 function  MacroCalculator() {
 
 const classes = useStyles();
@@ -28,6 +29,8 @@ const classes = useStyles();
 
 const dispatch = useDispatch();
 const history = useHistory();
+
+
 
 const [gender, setGender] = useState('');
 const [age, setAge] = useState('');
@@ -44,8 +47,9 @@ const [proteinGrams, setProteins] = useState('');  // calculated
 
 const user = useSelector((store) => store.user);
 
+
 const updateUser = (proteinGrams, carbsGrams, fatGrams, totalCalories) => {
- // e.preventDefault();
+  //e.preventDefault();
   console.log('reducers set', proteinGrams, carbsGrams, fatGrams, totalCalories);
   dispatch({
     type: 'UPDATE_USER',
@@ -64,8 +68,11 @@ const updateUser = (proteinGrams, carbsGrams, fatGrams, totalCalories) => {
 
   })
 
-
 } 
+
+  
+
+
 
 const handleWeightChange = (e) => {
   dispatch({
@@ -95,17 +102,7 @@ const handleAgeChange = (e) => {
 }
 
 const handleSubmit = (e) => {
-  e.preventDefault();
-  dispatch({
-    type: 'EDIT_STUDENT',
-    payload: {
-      
-      weight: user.weight,
-      height: user.height,
-      age: user.age
-    }
-  })
- 
+  
 
   history.push('/macrocalculator');
 
@@ -118,6 +115,8 @@ const handleSubmit = (e) => {
   console.log('handle submit','protein', proteinGrams,'carbs', carbsGrams, 'fats', fatGrams, 'calories', totalCalories);
   
  updateUser(proteinGrams, carbsGrams, fatGrams, totalCalories);
+
+ 
 }
 
 
@@ -216,6 +215,7 @@ const reiewResults = (e) =>  {
   
 
 }
+
 
 
   return (    

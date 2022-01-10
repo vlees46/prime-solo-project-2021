@@ -16,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
   navlinks: {
     marginLeft: theme.spacing(1),
     display: "flex",
+    
   },
  logo: {
     flexGrow: "5",
@@ -27,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "15px",
     marginLeft: theme.spacing(5),
     "&:hover": {
-      color: "grey",
+      color: "#B9FAF8",
       borderBottom: "1px solid white",
     },
   },
@@ -40,15 +41,15 @@ function Nav() {
   console.log('user informaiton', user);
 
   return (
-    <AppBar position="static">
-      <CssBaseline />
+    <AppBar style={{ backgroundColor: '#2C2829', color: 'white' }} position="static">
+    
       <Toolbar>
         <Typography variant="h4" className={classes.logo}>
           Macro Menu
         </Typography>
     <div className={classes.navlinks}>
-      <Link to="/home" className={classes.link}>
-        Home
+      <Link to="/login" className={classes.link}>
+        Login
       </Link>
       <div>
         {/* If no user is logged in, show these links */}

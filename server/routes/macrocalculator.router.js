@@ -28,7 +28,7 @@ const router = express.Router();
   })   
   });
 
-  router.get('/:id', (req, res) => {
+  /* router.get('/:id', (req, res) => {
     const sqlText = `
       SELECT * FROM user WHERE id = $1;
     `;
@@ -43,7 +43,7 @@ const router = express.Router();
         console.log('SELECT database error', dbErr);
         res.sendStatus(500);
       });
-  });
+  }); */
 
   router.post('/', (req, res) => {
     console.log(req.user);
