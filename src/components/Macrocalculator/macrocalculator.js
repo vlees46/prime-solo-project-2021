@@ -116,6 +116,7 @@ const handleSubmit = (e) => {
   
  updateUser(proteinGrams, carbsGrams, fatGrams, totalCalories);
 
+
  
 }
 
@@ -215,7 +216,6 @@ const reiewResults = (e) =>  {
   
 
 }
-
 
 
   return (    

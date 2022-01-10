@@ -4,6 +4,7 @@ import {useSelector} from 'react-redux';
 import { Button, Grid, Box } from '@mui/material';
 import { borders } from '@mui/system';
 
+
 function LoginForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -28,7 +29,7 @@ function LoginForm() {
 
   return (
     <form   onSubmit={login}>
-      <h2>Login</h2>
+      
       
       <Grid
       container
@@ -36,7 +37,7 @@ function LoginForm() {
       justifyContent="space-evenly"
       alignItems="center"
      
-      >
+      ><h2>Login</h2>
       {errors.loginMessage && (
         <h3 className="alert" role="alert">
           {errors.loginMessage}
@@ -85,8 +86,9 @@ function LoginForm() {
         <Button variant="contained" style={{ backgroundColor: '#A663CC', color: 'white' }} type="submit" name="submit" value="Log In" >Log In</Button><br></br>
         </Grid>
       </div>
-     
+    
     </form>
+    
   );
 }
 

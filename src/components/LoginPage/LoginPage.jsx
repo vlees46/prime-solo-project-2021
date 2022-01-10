@@ -2,6 +2,7 @@ import React from 'react';
 import LoginForm from '../LoginForm/LoginForm';
 import { useHistory } from 'react-router-dom';
 import { Button, Grid } from '@mui/material';
+import '../LoginForm/loginform.css';
 
 function LoginPage() {
   const history = useHistory();
@@ -20,8 +21,13 @@ function LoginPage() {
           }}
         >
           Register
-        </Button>
+       <br></br> </Button>
+        <img
+        src="https://thumbs.dreamstime.com/z/main-food-groups-macronutrients-carbohydrates-fats-proteins-comparison-dieting-healthcare-eutrophy-concept-vector-119268362.jpg">
+        </img>
+    
       </center>
+      
     </div>
   );
 }

@@ -29,7 +29,7 @@ function LandingPage() {
         justifyContent="space-evenly"
         alignItems="center"
       >
-        <p>Already a Member?</p>
+        <p class="p1">Already a Member?</p>
         <Button
           variant="contained"
           style={{ backgroundColor: '#A663CC', color: 'white' }}
@@ -44,7 +44,7 @@ function LandingPage() {
         justifyContent="space-evenly"
         alignItems="center"
       >
-        <p>New Member?</p>
+        <p class="p1">New Member?</p>
         <Button
           variant="contained"
           style={{ backgroundColor: '#A663CC', color: 'white' }}
