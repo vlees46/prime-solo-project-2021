@@ -1,17 +1,19 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useHistory, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import MacroResults from '../Macroresults/macroresults';
 import useStyles from './macrostyles';
 import { Typography, CssBaseline, Grid, Container } from '@material-ui/core';
 import CalculateIcon from '@mui/icons-material/Calculate';
-import { makeStyles, Box, Radio, Button } from '@material-ui/core';
+import { makeStyles, Box, Radio, Button,RadioGroup } from '@material-ui/core';
 import { Stack, Paper } from '@mui/material';
-import { styled } from '@mui/material/styles'; 
+import styled from 'styled-components';
 import { FormControl } from '@mui/material';
 import { FormControlLabel, OutlinedInput, TextField } from '@mui/material';
 import InputAdornment from '@mui/material/InputAdornment'; 
+import { useForm, Controller } from "react-hook-form";
+
 
 
 
@@ -104,7 +106,7 @@ const handleAgeChange = (e) => {
 const handleSubmit = (e) => {
   
 
-  history.push('/macrocalculator');
+  //history.push('/macrocalculator');
 
   const {proteinGrams, carbsGrams, fatGrams, totalCalories} = macroCalculate(weight, goal);
   setProteins(proteinGrams);
@@ -116,10 +118,11 @@ const handleSubmit = (e) => {
   
  updateUser(proteinGrams, carbsGrams, fatGrams, totalCalories);
 
+ disableGender();
 
  
 }
-
+ 
 
 
 function macroCalculate(weight, goal) {
@@ -218,10 +221,54 @@ const reiewResults = (e) =>  {
 }
 
 
+
+// Disables Male Buttons
+const [disabled, setDisabled] = useState(!enabled);
+const [enabled, setEnabled] = useState(true);
+
+// Disables Female Buttons
+
+const [disabledF, setDisabledF] = useState(!enabledF);
+const [enabledF, setEnabledF] = useState(true);
+
+
+function disableGender() {
+
+  if ( gender === 'Male') {
+    setDisabledF(!disabled)
+  
+    setGender("Male")
+  }
+  if ( gender === 'Female') {
+    setDisabled(!disabled)
+  
+    setGender("Female")
+  }
+ 
+
+}
+
+
+
+useEffect(() => setDisabled(!disabled), [enabled]);
+useEffect(() => setDisabledF(!disabledF), [enabledF]);
+ 
+
   return (    
     
 
+   
+
       <div className={classes.container}>
+
+     
+
+
+
+
+
+
+     
         
         <main>
             <div>
@@ -246,18 +293,20 @@ const reiewResults = (e) =>  {
         
         <Grid item xs={3} >
          <Button
-         
+        
           variant="contained"
           placeholder="gender"
           value='Male'
-          onClick={() => {setGender("Male")}} 
-          color="primary">Male</Button>
+          disabled={disabled}
+          enabled={enabled}
+          onClick={() => setGender("Male")}
+          color='primary'>Male</Button>
           </Grid>
 
         <Grid item xs={3}> 
          <Button
           variant="contained"
-        
+          disabled={disabledF}
           placeholder="gender"
           value='Female'
           onClick={() => setGender("Female")}
