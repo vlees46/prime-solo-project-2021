@@ -222,37 +222,44 @@ const reiewResults = (e) =>  {
 
 
 
+
+
 // Disables Male Buttons
-const [disabled, setDisabled] = useState(!enabled);
-const [enabled, setEnabled] = useState(true);
+const [disabled, setDisabled] = useState(user.gender === "Male" ? false : true);
+const [enabled, setEnabled] = useState(user.gender === "Male" ? true : false);
 
 // Disables Female Buttons
 
-const [disabledF, setDisabledF] = useState(!enabledF);
-const [enabledF, setEnabledF] = useState(true);
+const [disabledF, setDisabledF] = useState(user.gender === "Female" ? false : true);
+const [enabledF, setEnabledF] = useState(user.gender === "Female" ? true : false);
 
+
+
+
+ 
 
 function disableGender() {
 
-  if ( gender === 'Male') {
-    setDisabledF(!disabled)
-  
-    setGender("Male")
-  }
-  if ( gender === 'Female') {
-    setDisabled(!disabled)
-  
-    setGender("Female")
-  }
- 
+  if ( user.gender === 'Male') {
+  setEnabled(true)
 
+  
+} 
+
+if ( user.gender === 'Female') {
+  setEnabledF(true)
+} else {
+  setDisabled(true)
 }
-
-
-
-useEffect(() => setDisabled(!disabled), [enabled]);
-useEffect(() => setDisabledF(!disabledF), [enabledF]);
  
+
+}   
+
+
+
+/* useEffect(() => setDisabled(!disabled), [enabled]);
+useEffect(() => setDisabledF(!disabledF), [enabledF]);
+  */
 
   return (    
     
@@ -296,20 +303,22 @@ useEffect(() => setDisabledF(!disabledF), [enabledF]);
         
           variant="contained"
           placeholder="gender"
-          value='Male'
+          value={user.gender}
           disabled={disabled}
           enabled={enabled}
-          onClick={() => setGender("Male")}
+          onClick={(e) => setGender("Male")}       
+          
           color='primary'>Male</Button>
           </Grid>
 
         <Grid item xs={3}> 
          <Button
+          enabled={enabledF}
+          value={user.gender}
           variant="contained"
           disabled={disabledF}
           placeholder="gender"
-          value='Female'
-          onClick={() => setGender("Female")}
+          onClick={(e) => setGender("Female")}          
           color="primary">Female</Button>
          </Grid>
          </Grid>

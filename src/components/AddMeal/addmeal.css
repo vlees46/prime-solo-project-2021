@@ -1,0 +1,7 @@
+body {
+    background-color: #B8D0EB;
+    }
+
+.md-form input::placeholder {
+        color: red;
+      }

@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import reviewmeal from '../ReviewMeal/reviewmeal';
 import { Button, TextField, Grid, Box, Radio, OutlinedInput } from '@mui/material';
 import InputAdornment from '@mui/material/InputAdornment';  
+import { fontStyle } from '@mui/system';
 
 //import './addmeal.css'
 
@@ -59,7 +60,7 @@ const nextpage = (e) =>  {
 }
 
   return (
-    <div className="container">
+    <div>
       
       <form>
         
@@ -68,6 +69,7 @@ const nextpage = (e) =>  {
         <Radio
           name="Mealtime"
           placeholder="Mealtime"
+         
           value='Breakfast'
           onChange={(e) => setMealTime(e.target.value)}
           />Breakfast
@@ -87,14 +89,37 @@ const nextpage = (e) =>  {
         
         <Grid container direction="column" alignItems="center" justifyContent="center">
         <TextField
-          variant="outlined"
-          type='text' multiline rows={2}
+          style={{
+            backgroundColor: "#A663CC"
+            
+        }}
+        InputProps={{
+            style: {
+                color: "black"
+                
+            }
+        }}
+          
+          variant="filled"
+          type='text' multiline rows={2}      
+          
           placeholder="Meal Description"
           style={{ width: '50%' }}
           value={description}
           onChange={(e) => setDescription(e.target.value)}/>
           
           <TextField
+          
+          style={{
+            backgroundColor: "white"
+        }}
+        InputProps={{
+            style: {
+                color: "black"
+                
+            }
+        }}
+
           variant="outlined"
           size="small"
           type='text' multiline rows={1}
@@ -104,6 +129,16 @@ const nextpage = (e) =>  {
           onChange={(e) => setcalories(e.target.value)}/> 
 
         <OutlinedInput
+ style={{
+  backgroundColor: "white"
+}}
+InputProps={{
+  style: {
+      color: "black"
+      
+  }
+}}
+
           variant="outlined"
           size="small"
           type='text' multiline rows={1}
@@ -113,6 +148,16 @@ const nextpage = (e) =>  {
           onChange={(e) => setProtein(e.target.value)}/>
 
         <OutlinedInput
+
+style={{
+  backgroundColor: "white"
+}}
+InputProps={{
+  style: {
+      color: "black"
+      
+  }
+}}
           variant="outlined"
           size="small"
           type='text' multiline rows={1}
@@ -122,6 +167,16 @@ const nextpage = (e) =>  {
           onChange={(e) => setCarbs(e.target.value)}/>
 
         <OutlinedInput
+
+style={{
+  backgroundColor: "white"
+}}
+InputProps={{
+  style: {
+      color: "black"
+      
+  }
+}}
           variant="outlined"
           size="small"
           type='text' multiline rows={1}
@@ -134,7 +189,7 @@ const nextpage = (e) =>  {
         </Grid>
         <Grid
                 container
-                direction="row"
+                direction="column"
                 justifyContent="center"
                 alignItems="center"
             >
@@ -142,7 +197,7 @@ const nextpage = (e) =>  {
                     variant="contained"
                     placeholder="goal"
                     value='Loose Weight'
-                    style={{ backgroundColor: '#a1b26a', color: 'white' }}
+                    style={{ backgroundColor: '#2C2829', color: 'white' }}
                     onClick={(e) => setGoal(e.target.value)}
                     
                 >
@@ -153,7 +208,7 @@ const nextpage = (e) =>  {
                     variant="contained"
                     placeholder="goal"
                     value='Maintain Weight'
-                    style={{ backgroundColor: '', color: 'White' }}
+                    style={{ backgroundColor: '#2C2829', color: 'White' }}
                     onClick={(e) => setGoal(e.target.value)}
 
               
@@ -165,7 +220,7 @@ const nextpage = (e) =>  {
                     variant="contained"
                     placeholder="goal"
                     value='Gain Weight'
-                    style={{ backgroundColor: '', color: 'White' }}
+                    style={{ backgroundColor: '#2C2829', color: 'White' }}
                     onClick={(e) => setGoal(e.target.value)}
 
               
@@ -182,13 +237,13 @@ const nextpage = (e) =>  {
             >
                <Button
                variant="contained"
-               style={{ backgroundColor: '', color: 'White' }}               
+               style={{ backgroundColor: '#A663CC', color: 'White' }}               
                onClick={(e) => { addMeals(e) }}>Add</Button> 
 
 
               <Button
                variant="contained"
-               style={{ backgroundColor: '', color: 'White' }}               
+               style={{ backgroundColor: '#A663CC', color: 'White' }}               
                onClick={(e) => { nextpage(e) }}>Review Meal</Button> 
               </Grid>    
 
