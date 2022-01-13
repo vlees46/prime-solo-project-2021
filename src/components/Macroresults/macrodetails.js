@@ -30,7 +30,7 @@ function macrodetails() {
 
   
 const backpage = (e) =>  {
-    history.goBack();
+    history.push('/macrocalculator');
   
   }
 

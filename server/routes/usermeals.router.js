@@ -10,7 +10,8 @@ router.get('/', (req, res) => {
   const query = `SELECT DISTINCT * FROM "meals"
   JOIN "user_meals" ON "user_meals"."meal_id" = "meals"."id"
   JOIN "user" ON "user_meals"."goal" = "user"."goal"
-  WHERE "user"."id"=$1` ;
+  WHERE "user"."id"=$1
+  ORDER BY "meals"."mealtime" ASC` ;
 
   /* const sqlValues = [
     req.user.id] */
