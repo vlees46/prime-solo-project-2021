@@ -234,9 +234,33 @@ const [disabledF, setDisabledF] = useState(user.gender === "Female" ? false : tr
 const [enabledF, setEnabledF] = useState(user.gender === "Female" ? true : false);
 
 
+// Disables Loose Weight Button
 
+const [disabledLW, setDisabledLW] = useState(user.goal === "Loose Weight" ? false : true);
+const [enabledLW, setEnabledLW] = useState(user.goal === "Loose Weight" ? true : false);
 
+// Disables Maintain Weight Button
+
+const [disabledMW, setDisabledMW] = useState(user.goal === "Maintain Weight" ? false : true);
+const [enabledMW, setEnabledMW] = useState(user.goal === "Maintain Weight" ? true : false);
  
+
+function disableLW(){
+  if ( user.goal === 'Loose Weight') {
+    setEnabledLW(true)
+    setDisabledMW(true)
+  
+    
+  } 
+  if ( user.goal === 'Maintain Weight') {
+    setEnabledMW(true)
+    setDisabledLW(true)
+  
+    
+  } 
+}
+
+
 
 function disableGender() {
 
@@ -292,7 +316,8 @@ useEffect(() => setDisabledF(!disabledF), [enabledF]);
         </main>
              
        <div className={classes.container}>      
-        <CssBaseline />
+        
+        
 
         <Grid item xs={12} container alignItems="center" justifyContent="center" direction="column">
            <Grid item xs={6} container alignItems="center" justifyContent="center">
@@ -306,6 +331,7 @@ useEffect(() => setDisabledF(!disabledF), [enabledF]);
           value={user.gender}
           disabled={disabled}
           enabled={enabled}
+          style={{ width: '100%' }}
           onClick={(e) => setGender("Male")}       
           
           color='primary'>Male</Button>
@@ -318,6 +344,7 @@ useEffect(() => setDisabledF(!disabledF), [enabledF]);
           variant="contained"
           disabled={disabledF}
           placeholder="gender"
+          style={{ width: '100%' }}
           onClick={(e) => setGender("Female")}          
           color="primary">Female</Button>
          </Grid>
@@ -327,9 +354,9 @@ useEffect(() => setDisabledF(!disabledF), [enabledF]);
          
 
          
-         <Grid item xs={12} container alignItems="center" justifyContent="center" direction="column">
+         <Grid container alignItems="center"  direction="column">
         
-         <Grid item xs={5} >
+         <Grid item>
 
          <OutlinedInput
           variant="outlined"
@@ -338,13 +365,14 @@ useEffect(() => setDisabledF(!disabledF), [enabledF]);
           placeholder="weight"
           endAdornment={<InputAdornment position="end">lbs</InputAdornment>}
           value={weight}   
+          style={{ width: '100%' }}
           onChange={(e) => setWeight(e.target.value)}
            />
           
-
+         </Grid>
           
-        </Grid>
-        <Grid item xs={5} >
+          <Grid item>
+        
         <OutlinedInput
           variant="outlined"
           size="small"
@@ -352,23 +380,25 @@ useEffect(() => setDisabledF(!disabledF), [enabledF]);
           placeholder="height"
           endAdornment={<InputAdornment position="end">in</InputAdornment>}
           value={height}   
+          style={{ width: '100%' }}
           onChange={(e) => setHeight(e.target.value)}
              />
           
-        </Grid>
+          </Grid>
 
-        
-        <TextField
-          variant="outlined"
-          type='text' multiline rows={1}
-          placeholder="Age"
-          size="small"
-          value={age}   
-          onChange={(e) => setAge(e.target.value)} />
+          <Grid item>
+             <TextField
+              variant="outlined"
+              type='text' multiline rows={1}
+             placeholder="Age"
+             size="small"
+            value={age}   
+            style={{ width: '100%' }}
+           onChange={(e) => setAge(e.target.value)} />
           
           </Grid>
-      
-        
+      </Grid>
+     
         
         
         <Grid item xs={12} container alignItems="center" justifyContent="center" direction="column">
@@ -426,18 +456,22 @@ useEffect(() => setDisabledF(!disabledF), [enabledF]);
         
           <Grid item xs={6} >   
              <Button
-              variant="contained"          
+              variant="contained"      
+              enabled={enabledLW}    
+              disabled={disabledLW}
               name="Goal"
-              value="Loose Weight"
+              value={user.goal}
               onClick={() => setGoal("Loose Weight")}       
               color="primary">Lose Weight </Button>
            </Grid>
           <Grid item xs={6} >   
             <Button
               variant="contained"
+              disabled={disabledMW}
+              enabled={enabledMW}
               name="Goal"
               onClick={() => setGoal("Maintain Weight")}
-              value="Maintain Weight"
+              value={user.goal}
               color="primary">Maintain Weight </Button>
             </Grid>
           <Grid item xs={6} >   

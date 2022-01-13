@@ -13,7 +13,7 @@ import Paper from '@mui/material/Paper';
 import { ClassNames } from '@emotion/react';
 import { TablePagination } from '@mui/material';
 import { RecordVoiceOverSharp } from '@mui/icons-material';
-import { Button } from '@material-ui/core';
+import { Button, TextField, Grid, Box, Radio, OutlinedInput } from '@mui/material';
 
 
 
@@ -95,8 +95,7 @@ const TablePagination = () =>(<TablePagination
        
       </paper>
       <Button variant="contained"
-         style={{ backgroundColor: '#A663CC', color: 'white' }}
-         onClick={(e) => { backpage(e) }}>Back</Button>
+         style={{ backgroundColor: '#A663CC', color: 'white' }} onClick={(e) => { backpage(e) }}>Back</Button>
   </div>
   );
   

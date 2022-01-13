@@ -12,8 +12,13 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { ClassNames } from '@emotion/react';
 import { Button } from '@material-ui/core';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { SportsRugbySharp } from '@mui/icons-material';
 
 
+const tableStyling = {
+  padding: "0px 0px"
+};
 //import './addmeal.css'
 
 // This is one of our simplest components
@@ -53,18 +58,32 @@ const removeMeals = (id) => {
   return (
     <div>
     
-    <h1> User Meals</h1>
+       <h1> Meals</h1>
        <paper className={ClassNames.pageContent}>
-         <TableContainer>
-         <Table sx={{ minWidth: 650 }} aria-label="simple table">
+         <TableContainer
+           component={Paper}
+           sx={{
+             border: "1px solid rgba(0,0,0,0.2)",
+             width: "max-content",
+             padding: 1,
+             marginLeft: 'auto',
+             marginRight: 'auto'
+
+           }}
+          > 
+        
+         <Table fixedHeader={false} sx={{ tableLayout: "auto"}}>
          
         <TableHead>
           <TableRow>
-            <TableCell>
+          <TableCell style={{ width: "30%" }} >
               Mealtime
-            </TableCell>
-            <TableCell>
+            </TableCell >
+            <TableCell style={{ width: "55%" }}>
               Description
+            </TableCell>
+            <TableCell style={{ width: "15%" }}>
+              Delete
             </TableCell>
           </TableRow>
         </TableHead>
@@ -75,6 +94,7 @@ const removeMeals = (id) => {
                     
                       <TableCell>{meal.mealtime}</TableCell>
                       <TableCell>{meal.description}</TableCell>
+                      <DeleteIcon onClick={e => removeMeals(meal.id)} />
                   </TableRow>)         
                   )
       
