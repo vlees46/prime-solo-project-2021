@@ -51,7 +51,7 @@ const user = useSelector((store) => store.user);
 
 
 const updateUser = (proteinGrams, carbsGrams, fatGrams, totalCalories) => {
-  //e.preventDefault();
+ // e.preventDefault();
   console.log('reducers set', proteinGrams, carbsGrams, fatGrams, totalCalories);
   dispatch({
     type: 'UPDATE_USER',

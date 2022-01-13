@@ -3,6 +3,14 @@ import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+import { ClassNames } from '@emotion/react';
 
 
 //import './addmeal.css'
@@ -37,16 +45,27 @@ const backpage = (e) =>  {
 
   return (
     <div>
-       <h1> User Meals</h1>
-       <ul>
-        {usermeals.map((usermeal) => {
-          return <li key={usermeal.id}>Meal Time:{usermeal.mealtime}<br></br> Description: {usermeal.description} 
-          
-          </li>
-          
-        })}
-      </ul>
 
+
+
+
+       <h1> User Meals</h1>
+       <paper className={ClassNames.pageContent}>
+         <TableContainer>
+           <TableBody>
+             {
+                usermeals.map(usermeal =>
+                  (<TableRow key={usermeal.id}>
+                      <TableCell>{usermeal.mealtime}</TableCell>
+                      <TableCell>{usermeal.description}</TableCell>
+                  </TableRow>)         
+                  )
+      
+          }
+          </TableBody>
+      </TableContainer>
+       
+      </paper>
       <button onClick={(e) => { backpage(e) }}>Back</button>
   </div>
   );

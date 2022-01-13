@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import usermeals from '../UserMeals/usermeals';
 import { Button } from '@material-ui/core';
+import { Typography, CssBaseline, Grid, Container } from '@material-ui/core';
 
 
 
@@ -29,7 +30,7 @@ function macrodetails() {
 
   
 const backpage = (e) =>  {
-    history.push('/macrocalculator');
+    history.goBack();
   
   }
 
@@ -92,7 +93,8 @@ const backpage = (e) =>  {
 
   return (
     <div>
-       
+         <Grid container alignItems="center"  direction="column">
+        
         <h1> Macro Results</h1>
         <span className="Form__span">Total Calories</span><br></br>
         <input
@@ -154,11 +156,23 @@ const backpage = (e) =>  {
               value={tdee}
               className="Form_weight"
             /><br></br>     
-      
+      <Grid
+        container
+        direction="row"
+        justifyContent="space-evenly"
+        alignItems="center"
+      >
 
-        <button onClick={(e) => { backpage(e) }}>Back</button>
-        <button onClick={(e) => { usermeals(e) }}>Meals</button>
-      
+        <Button
+        variant="contained"
+        style={{ backgroundColor: '#A663CC', color: 'white' }}
+        onClick={(e) => { backpage(e) }}>Back</Button>
+        <Button
+         variant="contained"
+         style={{ backgroundColor: '#A663CC', color: 'white' }}
+        onClick={(e) => { usermeals(e) }}>Meals</Button>
+        </Grid>
+        </Grid>
   </div>
   );
   
