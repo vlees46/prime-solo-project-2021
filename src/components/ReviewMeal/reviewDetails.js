@@ -58,8 +58,9 @@ const removeMeals = (id) => {
   return (
     <div>
     
-       <h1> Meals</h1>
+      
        <paper className={ClassNames.pageContent}>
+       
          <TableContainer
            component={Paper}
            sx={{
@@ -75,6 +76,7 @@ const removeMeals = (id) => {
          <Table fixedHeader={false} sx={{ tableLayout: "auto"}}>
          
         <TableHead>
+         <h1> Meals</h1>
           <TableRow>
           <TableCell style={{ width: "30%" }} >
               Mealtime
@@ -104,25 +106,7 @@ const removeMeals = (id) => {
       </TableContainer>
        
       </paper>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
+      
       <button onClick={(e) => { backpage(e) }}>Back</button>
       
   </div>

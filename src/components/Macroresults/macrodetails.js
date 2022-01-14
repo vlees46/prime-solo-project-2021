@@ -4,8 +4,13 @@ import ReactDOM from 'react-dom';
 import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import usermeals from '../UserMeals/usermeals';
-import { Button } from '@material-ui/core';
-import { Typography, CssBaseline, Grid, Container } from '@material-ui/core';
+import { Button} from '@material-ui/core';
+import { Typography, Grid, Container } from '@material-ui/core';
+import Paper from '@mui/material/Paper';
+import { TextField, Box, Radio, OutlinedInput } from '@mui/material';
+import InputAdornment from '@mui/material/InputAdornment'; 
+import { makeStyles } from "@material-ui/core/styles";
+import yellow from "@material-ui/core/colors/yellow";
 
 
 
@@ -15,7 +20,25 @@ import { Typography, CssBaseline, Grid, Container } from '@material-ui/core';
 // It doesn't have local state
 // It doesn't dispatch any redux actions or display any part of redux state
 // or even care what the redux state is
-
+const useStyles = makeStyles((theme) => ({
+  root: {
+    "& > *": {
+      margin: theme.spacing(5),
+      width: theme.spacing(60),
+      height: theme.spacing(100)
+      
+    }
+  },
+  yellowPaper: {
+    backgroundColor: yellow[300]
+  },
+  customBorder: {
+    border: `3px solid ${yellow[200]}`
+  },
+  customBorderRadius: {
+    borderRadius: 25
+  }
+}));
 
 function macrodetails() {
   const dispatch = useDispatch();
@@ -89,74 +112,113 @@ const backpage = (e) =>  {
   
   dailyexpenditure();
   let tdee = Math.round(dailyexpenditure());
-  
+  const classes = useStyles();
 
   return (
-    <div>
-         <Grid container alignItems="center"  direction="column">
-        
-        <h1> Macro Results</h1>
-        <span className="Form__span">Total Calories</span><br></br>
-        <input
-              type="text"
-              id="calories"
-              name="calories"
-              placeholder="calories results"
-              value={user.calories}
-              className="Form_weight"
+    
+    <div className={classes.root}>
+   
+        <Paper elevation={6}>
+       
+          <Grid  container alignItems="center"  direction="column"><br></br>
+          <Typography variant="h4">{user.username}'s Macro Results</Typography><br></br>
+          <Typography variant="h5">Total Calories</Typography>
+         <Grid item>
+         <TextField
+          variant="filled"
+          size="small"
+          id="filled-basic"
+          name="calories"
+          placeholder="calories results"
+          value={user.calories}
+          type='text' multiline rows={1}
+          endAdornment={<InputAdornment position="end"></InputAdornment>}
+          style={{ width: '100%' }}
+           />
+         
+         </Grid><br></br>
+      
+      <Typography variant="h5">Carbs</Typography><br></br>
+         <Grid item>
+         <TextField
+          variant="filled"
+          size="small"
+          id="filled-basic"
+          name="carbs"
+          placeholder="calories results"
+          value={user.carbs}
+          type='text' multiline rows={1}
+          endAdornment={<InputAdornment position="end"></InputAdornment>}
+          style={{ width: '100%' }}
+           />
+         
+         </Grid>
+         <Typography variant="h5">Protein</Typography><br></br>
+         <Grid item>
+         <TextField
+          variant="filled"
+          size="small"
+          id="protein"
+          name="protein"
+          placeholder="protein results"
+          value={user.proteins}
+          type='text' multiline rows={1}
+          endAdornment={<InputAdornment position="end"></InputAdornment>}
+          style={{ width: '100%' }}
+           />
+         
+         </Grid>
 
-            /><br></br>
-            <span className="Form__span">Carbs</span><br></br>
-            <input
-              type="text"
-              id="carbs"
-              name="carbs"
-              placeholder="carbs results"
-              value={user.carbs}
-              className="Form_weight"
 
-            /><br>
-            </br>
-            <span className="Form__span">Protein</span><br></br>
-             <input
-              type="text"
-              id="protein"
-              name="protein"
-              placeholder="protein results"
-              value={user.proteins}
-              className="Form_weight"
+         <Typography variant="h5">Fats</Typography><br></br>
+         <Grid item>
+         <TextField
+          variant="filled"
+          size="small"
+          id="fats"
+          name="fats"
+          placeholder="fats results"
+          value={user.fats}
+          type='text' multiline rows={1}
+          endAdornment={<InputAdornment position="end"></InputAdornment>}
+          style={{ width: '100%' }}
+           />
+         
+            </Grid>
 
-            /><br></br>
-            <span className="Form__span">Fats</span><br></br>
-            <input
-              type="text"
-              id="fats"
-              name="fats"
-              placeholder="fats results"
-              value={user.fats}
-              className="Form_weight"
-            /><br></br>      
-             
-             <span className="Form__span">BMI</span><br></br>
-            <input
-              type="text"
-              id="bmi"
-              name="bmi"
-              placeholder="bmi results"
-              value={bmi}
-              className="Form_weight"
-            /><br></br>     
+        <Typography variant="h5">BMI</Typography><br></br>
+         <Grid item>
+         <TextField
+          variant="filled"
+          size="small"
+          id="bmi"
+          name="bmi"
+          placeholder="bmi results"
+          value={bmi}
+          type='text' multiline rows={1}
+          endAdornment={<InputAdornment position="end"></InputAdornment>}
+          style={{ width: '100%' }}
+           />
+         
+            </Grid><br></br>
 
-<span className="Form__span">Total Daily Energy Expenditure </span><br></br>
-            <input
-              type="text"
-              id="tdee"
-              name="tdee"
-              placeholder="tdee results"
-              value={tdee}
-              className="Form_weight"
-            /><br></br>     
-      <Grid
+        <Typography variant="h5">Total Daily Energy Expenditure</Typography><br></br>
+         <Grid item>
+         <TextField
+          variant="filled"
+          size="small"
+          id="tdee"
+          name="tdee"
+          placeholder="tdee results"
+          value={tdee}
+          type='text' multiline rows={1}
+          endAdornment={<InputAdornment position="end"></InputAdornment>}
+          style={{ width: '100%' }}
+           />
+         
+            </Grid><br></br>
+
+            <Grid
         container
         direction="row"
         justifyContent="space-evenly"
@@ -172,7 +234,12 @@ const backpage = (e) =>  {
          style={{ backgroundColor: '#A663CC', color: 'white' }}
         onClick={(e) => { usermeals(e) }}>Meals</Button>
         </Grid>
-        </Grid>
+
+         </Grid>   
+      </Paper>
+      
+      
+        
   </div>
   );
   

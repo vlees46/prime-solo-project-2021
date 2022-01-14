@@ -118,8 +118,8 @@ const handleSubmit = (e) => {
   
  updateUser(proteinGrams, carbsGrams, fatGrams, totalCalories);
 
- disableGender();
-
+ //disableGender();
+ reiewResults();
  
 }
  
@@ -221,31 +221,45 @@ const reiewResults = (e) =>  {
 }
 
 
-
-
-
-// Disables Male Buttons
-const [disabled, setDisabled] = useState(user.gender === "Male" ? false : true);
-const [enabled, setEnabled] = useState(user.gender === "Male" ? true : false);
-
-// Disables Female Buttons
-
-const [disabledF, setDisabledF] = useState(user.gender === "Female" ? false : true);
-const [enabledF, setEnabledF] = useState(user.gender === "Female" ? true : false);
-
-
-// Disables Loose Weight Button
-
-const [disabledLW, setDisabledLW] = useState(user.goal === "Loose Weight" ? false : true);
-const [enabledLW, setEnabledLW] = useState(user.goal === "Loose Weight" ? true : false);
-
-// Disables Maintain Weight Button
-
-const [disabledMW, setDisabledMW] = useState(user.goal === "Maintain Weight" ? false : true);
-const [enabledMW, setEnabledMW] = useState(user.goal === "Maintain Weight" ? true : false);
  
+const [colormale, setColorM] = useState('primary')
 
-function disableLW(){
+function colorChangeM(){
+  setColorM('secondary')
+  setGender("Male")
+}
+
+const [colorfemale, setColorF] = useState('primary')
+
+function colorChangeF(){
+  setColorF('secondary')
+  setGender("Female")
+}
+
+const [colorlosew, setLoseW] = useState('primary')
+
+function colorLoseW(){
+  setLoseW('secondary')
+  setGoal("Loose Weight")
+}
+
+const [colormaintainw, setMaintainW] = useState('primary')
+
+function colorMaintainW(){
+  setMaintainW('secondary')
+  setGoal("Maintain Weight")
+}
+
+const [colorgainw, setGainW] = useState('primary')
+
+function colorGainW(){
+  setGainW('secondary')
+  setGoal("Gain Weight")
+}
+
+
+
+/* function disableLW(){
   if ( user.goal === 'Loose Weight') {
     setEnabledLW(true)
     setDisabledMW(true)
@@ -258,11 +272,11 @@ function disableLW(){
   
     
   } 
-}
+} */
 
 
 
-function disableGender() {
+/* function disableGender() {
 
   if ( user.gender === 'Male') {
   setEnabled(true)
@@ -277,7 +291,7 @@ if ( user.gender === 'Female') {
 }
  
 
-}   
+}    */
 
 
 
@@ -291,15 +305,7 @@ useEffect(() => setDisabledF(!disabledF), [enabledF]);
    
 
       <div className={classes.container}>
-
-     
-
-
-
-
-
-
-     
+          
         
         <main>
             <div>
@@ -324,40 +330,31 @@ useEffect(() => setDisabledF(!disabledF), [enabledF]);
            
         
         <Grid item xs={3} >
-         <Button
-        
+         <Button   
           variant="contained"
           placeholder="gender"
-          value={user.gender}
-          disabled={disabled}
-          enabled={enabled}
-          style={{ width: '100%' }}
-          onClick={(e) => setGender("Male")}       
-          
-          color='primary'>Male</Button>
+          value={user.gender}   
+          color={colormale}
+          style={{ backgroundColor: {colormale}, color: 'white', width: '100%' }}
+          onClick={() => colorChangeM()}       
+          >Male</Button>
           </Grid>
 
         <Grid item xs={3}> 
          <Button
-          enabled={enabledF}
           value={user.gender}
-          variant="contained"
-          disabled={disabledF}
+          variant="contained"    
           placeholder="gender"
-          style={{ width: '100%' }}
-          onClick={(e) => setGender("Female")}          
-          color="primary">Female</Button>
+          color={colorfemale}
+          style={{ backgroundColor: {colorfemale}, color: 'white', width: '100%' }}
+          onClick={() => colorChangeF()}          
+          >Female</Button>
          </Grid>
          </Grid>
          </Grid>
-         
-         
-
          
          <Grid container alignItems="center"  direction="column">
-        
          <Grid item>
-
          <OutlinedInput
           variant="outlined"
           size="small"
@@ -457,34 +454,36 @@ useEffect(() => setDisabledF(!disabledF), [enabledF]);
           <Grid item xs={6} >   
              <Button
               variant="contained"      
-              enabled={enabledLW}    
-              disabled={disabledLW}
+              color={colorlosew}
+              style={{ backgroundColor: {colorlosew}, color: 'white', width: '100%' }}
               name="Goal"
               value={user.goal}
-              onClick={() => setGoal("Loose Weight")}       
-              color="primary">Lose Weight </Button>
+              onClick={() => colorLoseW()}       
+              >Lose Weight </Button>
            </Grid>
           <Grid item xs={6} >   
             <Button
               variant="contained"
-              disabled={disabledMW}
-              enabled={enabledMW}
+              color={colormaintainw}
+              style={{ backgroundColor: {colormaintainw}, color: 'white', width: '100%' }}
               name="Goal"
-              onClick={() => setGoal("Maintain Weight")}
+              onClick={() => colorMaintainW()}
               value={user.goal}
-              color="primary">Maintain Weight </Button>
+              >Maintain Weight </Button>
             </Grid>
           <Grid item xs={6} >   
             <Button
               variant="contained"
+              color={colorgainw}
+              style={{ backgroundColor: {colorgainw}, color: 'white', width: '100%' }}
               name="Goal"
               value="Gain Weight"
-              onClick={() => setGoal("Gain Weight")}
-              color="primary">Gain Weight </Button>
+              onClick={() => colorGainW()}
+              >Gain Weight </Button>
               </Grid>
 
 </Grid>
-</Grid>         
+</Grid>         <br></br>
 
       
       
@@ -495,7 +494,7 @@ useEffect(() => setDisabledF(!disabledF), [enabledF]);
          <Grid item >
 
           <Button variant="outlined" onClick={(e) => { handleSubmit(e) }}>Calculate</Button> 
-          <Button variant="outlined" onClick={(e) => { reiewResults(e) }}>Results</Button>
+          
           
         </Grid>
         </Grid>

@@ -32,6 +32,7 @@ function usermeals() {
   const meals = useSelector((store) => store.meal); */
 
   const usermeals = useSelector((store) => store.usermeal)
+  const user = useSelector((store) => store.user);
 
   
 const backpage = (e) =>  {
@@ -61,11 +62,29 @@ const TablePagination = () =>(<TablePagination
     <div>
 
 
+<Grid
+        container
+        direction="row"
+        justifyContent="space-evenly"
+        alignItems="center"
+      >
+        
+        <h1> {user.username}'s Meals</h1>
 
-
-       <h1> User Meals</h1>
+       </Grid>
        <paper className={ClassNames.pageContent}>
-         <TableContainer>
+         <TableContainer
+         component={Paper}
+         sx={{
+           border: "1px solid rgba(0,0,0,0.2)",
+           width: "max-content",
+           padding: 1,
+           marginLeft: 'auto',
+           marginRight: 'auto'
+
+         }}
+         
+         >
          <Table sx={{ minWidth: 650 }} aria-label="simple table">
          
         <TableHead>
@@ -91,11 +110,21 @@ const TablePagination = () =>(<TablePagination
           }
           </TableBody>
           </Table>
+          
       </TableContainer>
-       
-      </paper>
+
+      <Grid
+        container
+        direction="row"
+        justifyContent="space-evenly"
+        alignItems="center"
+      > 
       <Button variant="contained"
          style={{ backgroundColor: '#A663CC', color: 'white' }} onClick={(e) => { backpage(e) }}>Back</Button>
+      </Grid>
+      </paper>
+      
+     
   </div>
   );
   
