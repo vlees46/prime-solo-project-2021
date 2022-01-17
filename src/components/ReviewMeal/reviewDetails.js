@@ -11,9 +11,10 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { ClassNames } from '@emotion/react';
-import { Button } from '@material-ui/core';
+import { Button, Grid } from '@material-ui/core';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { SportsRugbySharp } from '@mui/icons-material';
+
 
 
 const tableStyling = {
@@ -106,8 +107,20 @@ const removeMeals = (id) => {
       </TableContainer>
        
       </paper>
-      
-      <button onClick={(e) => { backpage(e) }}>Back</button>
+
+      <Grid
+        container
+        direction="row"
+        justifyContent="space-evenly"
+        alignItems="center"
+      > 
+      <Button variant="contained"
+         style={{ backgroundColor: '#A663CC', color: 'white' }} onClick={(e) => { backpage(e) }}>Back</Button>
+      </Grid>
+
+
+
+  
       
   </div>
   );

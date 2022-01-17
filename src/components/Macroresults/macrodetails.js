@@ -23,8 +23,8 @@ import yellow from "@material-ui/core/colors/yellow";
 const useStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
-      margin: theme.spacing(5),
-      width: theme.spacing(60),
+      margin: theme.spacing(5,20,0),
+      width: theme.spacing(185),
       height: theme.spacing(100)
       
     }
@@ -117,7 +117,7 @@ const backpage = (e) =>  {
   return (
     
     <div className={classes.root}>
-   
+     <Grid  container alignItems="center"  direction="column">
         <Paper elevation={6}>
        
           <Grid  container alignItems="center"  direction="column"><br></br>
@@ -217,6 +217,7 @@ const backpage = (e) =>  {
            />
          
             </Grid><br></br>
+            
 
             <Grid
         container
@@ -236,7 +237,10 @@ const backpage = (e) =>  {
         </Grid>
 
          </Grid>   
+         
+         
       </Paper>
+      </Grid>
       
       
         
